@@ -1,0 +1,565 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<!-- Head -->
+<head>
+<title>Fresh Food a Hotel Category Bootstrap responsive Website Template | Home :: w3layouts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta name="keywords" content="Fresh Food a Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+
+<!-- Default-JavaScript-File -->
+	<script type="text/javascript" src="{% static "js/jquery-2.1.4.min.js" %}"></script>
+	<script type="text/javascript" src="{% static "js/bootstrap.js" %}"></script>
+<!-- //Default-JavaScript-File -->
+
+<link rel="stylesheet" href="{% static "css/easy-responsive-tabs.css" %}"><!-- easy responsive tabs css -->
+
+<link rel="stylesheet" href="{% static "css/jquery-ui.css" %}" type="text/css" media="all"><!-- date-picker css-->
+
+<!-- gallery -->
+	<link href="{% static "css/lsb.css" %}" rel="stylesheet" type="text/css">
+<!-- //gallery -->
+
+<!-- banner text effect css files -->
+    <link rel="stylesheet" type="text/css" href="{% static "css/demo.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "css/style3.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "css/normalize.css" %}" />
+<!-- banner text effect css files -->
+
+<!-- logo text effect css files -->
+	<link rel="stylesheet" type="text/css" href="{% static "css/demo1.css" %}" />
+	<link rel="stylesheet" type="text/css" href="{% static "css/linkstyles.css" %}" />
+<!-- //logo text effect css files -->
+	
+<!-- default css files -->
+	<link rel="stylesheet" href="{% static "css/bootstrap.css" %}" type="text/css" media="all">
+	<link rel="stylesheet" href="{% static "css/style.css" %}" type="text/css" media="all">
+	<link rel="stylesheet" href="{% static "css/font-awesome.min.css" %}" />
+<!-- default css files -->
+	
+<!--web font-->
+	<link href="//fonts.googleapis.com/css?family=Pacifico&amp;subset=latin-ext,vietnamese" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i,900,900i&amp;subset=cyrillic,latin-ext" rel="stylesheet">
+<!--//web font-->
+	
+<!-- scrolling script -->
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){		
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script> 
+<!-- //scrolling script -->
+
+</head>
+
+<!-- Body -->
+<body>
+
+<!-- banner -->
+	<div class="banner jarallax">
+		<div class="agileinfo-dot">
+			<div class="header">
+				<div class="container-fluid">
+					<div class="header-left">
+						<div class="w3layouts-logo grid__item">
+							<h1>
+								<a class="link link--ilin" href="{% url 'home' %}"><span>Bharat</span><span>Food</span></a>
+							</h1>
+						</div>
+					</div>
+					<div class="top-nav">
+						<nav class="navbar navbar-default">
+								<div class="navbar-header">
+									<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+										<span class="sr-only">Toggle navigation</span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+									</button>
+								</div>
+							<!-- Collect the nav links, forms, and other content for toggling -->
+							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+								<ul class="nav navbar-nav">
+									<li><a class="active" href="{% url 'home' %}">Home</a></li>
+									<li><a href="#about" class="scroll">About</a></li>
+									<li><a href="#services" class="scroll">Services</a></li>
+									<li><a href="#contact" class="scroll">Contact</a></li>
+									<li><a href="{% url 'login' %}" >SignUp/LogIn</a>
+									</li>
+								</ul>
+						
+					<div class="clearfix"> </div>						
+							</div>	
+						</nav>
+						<div class="agileinfo-social-grids">
+							<ul>
+								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="#"><i class="fa fa-rss"></i></a></li>
+								<li><a href="#"><i class="fa fa-vk"></i></a></li>
+							</ul>
+						</div>
+						
+				</div>		
+					</div>
+					
+			</div>
+			<div class="agileits-banner-info">
+				<h3>welcome to</h3>
+					<h2 class="rw-sentence">
+					<span>Food tastes better, eat with your </span>
+					<div class="rw-words rw-words-1">
+						<span>Family</span>
+						<span>Friends</span>
+						<span>happiness</span>
+						<span>Love</span>
+						<span>Gratefulness</span>
+						<span>happiness</span>
+					</div>
+					</h2>
+					<a href="#" data-toggle="modal" data-target="#myModal2">Order Your Meal</a>
+			</div>
+		</div>
+	</div>
+<!-- //banner -->
+	
+	
+<!-- popup for sign up form -->
+<div class="modal video-modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModal2">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div id="small-dialog2" class="mfp-hide book-form">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h3>Order Your Meal</h3>
+					<form action="#" method="post">
+						<input type="text" name="Name" placeholder="Name" required=""/>
+						<input type="tel" name="number" placeholder="Mobile Number" required=""/>
+						<input type="email" name="Email" class="email" placeholder="Email" required=""/>
+						<div class="select-block1">
+							<select required="">
+								<option value="">Number Of Thali</option>
+								<option value="">1</option>
+								<option value="">2</option>
+								<option value="">3</option>
+								<option value="">4</option>
+								<option value="">5</option>
+								<option value="">More Than 5</option>
+							</select>
+						</div>
+			
+						<input class="date" type="text" id="datepicker2"  name="datepicker2" placeholder="Date Of Arrival" title="Please enter your Arrival Date " required=""/>
+						<textarea name="Message" placeholder="Additional Information (Optional)" ></textarea>
+						<input type="submit" value="Confirm">
+					</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //popup for sign up form -->
+
+<!-- modal -->
+	<div class="modal about-modal fade" id="myModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header"> 
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
+						<h4 class="modal-title">Fresh Food</h4>
+						<h5>1 april 2017</h5>
+					</div> 
+					<div class="modal-body">
+					<div class="agileits-w3layouts-info">
+						<img src="{% static "images/s1.jpg" %}" alt="" />
+						<p>Morbi eget mollis erat, sit amet feugiat nulla. In hac habitasse platea dictumst. Sed ac fermentum eros. Pellentesque tincidunt nisi sit amet dui lobortis, pulvinar pellentesque dui tempor. Sed iaculis, nisl a eleifend porttitor, diam mauris gravida arcu, suscipit ullamcorper nulla diam vitae lorem..</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- //modal -->
+	
+<!-- tabs -->	<!-- about -->
+<div class="demo" id="about">    
+	<div class="container"> 
+		<div class="w3ls-heading">
+			<h3>About us</h3>
+		</div>
+		<div class="horizontalTab" id="horizontalTab">
+			<ul class="resp-tabs-list list-group">
+				<li class="list-group-item text-center"></li>
+				<li class="list-group-item text-center"></li>
+				<li class="list-group-item text-center"></li>
+				<li class="list-group-item text-center"></li>
+			</ul>
+				<div class="resp-tabs-container">
+					<!-- section -->
+							<div class="bhoechie-tab-content active">
+										<h3 class="title">about</h3>
+								<div class="services-grids">
+									<div class="ser-img">
+										<h3>ONLY FRESH AND HEALTHY FOOD FOR YOUR FAMILY </h3>
+										<p>Integer sed blandit nisi, eget tempor nulla. Vivamus ut mi nec quam iaculis ultricies. 
+										Maecenas at placerat metus. Curabitur arcu purus, eleifend ut massa at, fringilla sagittis quam. 
+										Nulla volutpat tellus orci, id laoreet ante pretium id.
+										</p>
+										<a href="#myModal" data-toggle="modal"> Read More About Our Recipes</a>
+									</div>
+									<div class="ser-img1">
+										<img src="{% static "images/about.png" %}" alt="" />
+									</div>
+									<div class="ser-info">
+										<p>Integer sed blandit nisi, eget tempor nulla. Vivamus ut mi nec quam iaculis ultricies. 
+										Maecenas at placerat metus. Curabitur arcu purus, eleifend ut massa at, fringilla sagittis quam. 
+										Nulla volutpat tellus orci, id laoreet ante pretium id.
+										</p>
+										<p>Pellentesque finibus dapibus volutpat. Curabitur imperdiet vulputate rhoncus. Nullam 
+										scelerisque magna non turpis euismod bibendum. 
+										</p>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+							<!--  section -->
+							<div class="bhoechie-tab-content">
+										<h3 class="title ab">Our Menu</h3>
+								<div class="services-grids">
+									<div class="col-md-6 menugrid">
+											<img src="{% static "images/b1.jpg" %}" alt="" />
+									</div>
+									<div class="col-md-6 menugrid1 innergrid">
+											<h3>Sea food</h3>
+											<ul class="list ins1">
+												<li>prawns toast - <p>served with soup</p><span>$13.00</span></li>
+												<li>fish and chips - <p>Seasoned with sprinkling pepper</p><span>$16.09</span></li>
+												<li>boneless meat - <p>served with Onion sprinkled lemon</p><span>$11.69</span></li>
+												<li>Tasty rib meat - <p>Best quality product of herb</p><span>$12.00</span></li>
+												<li>congrio fish - <p>served with butter Cheese</p><span>$5.00</span></li>
+											</ul>
+									</div>
+									<div class="clearfix"></div>
+										<div class="col-md-6 innergrid">
+											<h3>Deserts</h3>
+											<ul class="list ins1">
+												<li>Chocolate Cake - <p>served with Creamy popins</p><span>$9.00</span></li>
+												<li>Classic delight - <p>soft better delighted coke</p><span>$14.69</span></li>
+												<li>Holiday special - <p>Splitting mix</p><span>$11.50</span></li>
+												<li>Mix fruit club - <p>served with soup</p><span>$10.00</span></li>
+												<li>Milk shake - <p>served with Ice cubes</p><span>$8.00</span></li>
+											</ul>
+										</div>
+										<div class="col-md-6 innergrid">
+												<h3>Salads</h3>
+											<ul class="list ins1">
+												<li>Fruit salad - <p>Served with mix fruits</p><span>$7.00</span></li>
+												<li>Honeymoon - <p>served with Icecream corner slide</p><span>$19.09</span></li>
+												<li>Choconuts - <p>served with melting candies</p><span>$11.69</span></li>
+												<li>Mixed fruit with almond - <p>served with Almond pieces</p><span>$13.00</span></li>
+												<li>cocoa salad - <p>served with nuts and cream</p><span>$16.50</span></li>
+											
+											</ul>
+										</div>
+								<div class="clearfix"></div>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+				
+							<!--  search -->
+							<div class="bhoechie-tab-content">
+										<h3 class="title ab1">Why Visit Us?</h3>
+								<div class="services-grids">
+									<div class="about-2">
+										<h3>We select fresh and natural products</h3>
+										<img src="{% static "images/burger.jpg" %}" alt="" />
+									</div>
+									<div class="about-info2">
+										<div class="top-grid">
+											<div class="col-md-6 grid">
+												<i class="fa fa-cutlery" aria-hidden="true"></i>
+												<h3>Healthy food</h3>
+												<p>Pellentesque finibus dapibus volutpat. Curabitur imperdiet vulputate rhoncus. Nullam. 
+												</p>
+											</div>
+											<div class="col-md-6 grid">
+												<i class="fa fa-apple" aria-hidden="true"></i>
+												<h3>Fresh fruits</h3>
+												<p>Pellentesque finibus dapibus volutpat. Curabitur imperdiet vulputate rhoncus. Nullam. 
+												</p>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+										<div class="bottom-grid">
+											<div class="col-md-6 grid">
+												<i class="fa fa-glass" aria-hidden="true"></i>
+												<h3>Drink diet</h3>
+												<p>Pellentesque finibus dapibus volutpat. Curabitur imperdiet vulputate rhoncus. Nullam. 
+												</p>
+											</div>
+											<div class="col-md-6 grid">
+												<i class="fa fa-spoon" aria-hidden="true"></i>
+												<h3>Tasty snacks</h3>
+												<p>Pellentesque finibus dapibus volutpat. Curabitur imperdiet vulputate rhoncus. Nullam. 
+												</p>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="bhoechie-tab-content">
+										<h3 class="title ab2">why choose us</h3>
+								<div class="services-grids">
+									<div class="about-2 lastgrid">
+										<h3>delicious dishes</h3>
+										<h3>great place to enjoy</h3>
+										<p>Integer sed blandit nisi, eget tempor nulla. Vivamus ut mi nec quam iaculis ultricies. 
+										Maecenas at placerat metus. Curabitur arcu purus, eleifend ut massa at, fringilla sagittis quam. 
+										Nulla volutpat tellus orci, id laoreet ante pretium id. Ut iaculis quis eros ac bibendum.
+										</p>
+									</div>
+									<div class="about-info2">
+										<div class="col-md-6 last-grid">
+											<img src="{% static "images/b11.jpg" %}" alt="" />
+										</div>
+										<div class="col-md-6 last-grid1">
+											<h3>High quality restaurant</h3>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+				</div>
+		</div>
+	</div>
+</div>
+
+<!-- tabs  js-->
+<script src="{% static "js/easy-responsive-tabs.js" %}"></script>
+<script>
+$(document).ready(function () {
+$('#horizontalTab').easyResponsiveTabs({
+type: 'default', //Types: default, vertical, accordion           
+width: 'auto', //auto or any width like 600px
+fit: true,   // 100% fit in a container
+closed: 'accordion', // Start closed if in accordion view
+activate: function(event) { // Callback function if tab is switched
+var $tab = $(this);
+var $info = $('#tabInfo');
+var $name = $('span', $info);
+$name.text($tab.text());
+$info.show();
+}
+});
+$('#verticalTab').easyResponsiveTabs({
+type: 'vertical',
+width: 'auto',
+fit: true
+});
+});
+</script>
+
+<!-- //tabs-js  -->
+
+<!-- //tabs -->    <!-- //about -->
+
+	
+
+	
+	
+<!-- services -->
+<div class="services" id="services">
+		<div class="container">
+			<div class="ser-top wthree-3 wow fadeInDown w3-service-head">
+				<h3>Our Services </h3>
+			</div>
+			<div class="w3-service-grids set-6">
+				<div class="col-md-4  services-w3-grid1 ser-left icon1 hi-icon-wrap hi-icon-effect-6">
+					<i class="fa fa-cutlery hi-icon hi-icon-sort-by-attributes" aria-hidden="true"></i>
+					<h4>Breakfast</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisc elit. Proin  vestibulum velit.Lorem ipsum ultricies vestibulum velit adipisc elit Proin.</p>
+				</div>
+				<div class="col-md-4  services-w3-grid1 ser-left icon2 hi-icon-wrap hi-icon-effect-6">
+					<i class="fa fa-spoon hi-icon hi-icon-sort-by-attributes" aria-hidden="true"></i>
+					<h4>Lunch</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisc elit. Proin ultricies vestibulum Lorem ipsum velit vestibulum velit adipisc elit Proin.</p>
+				</div>
+				<div class="col-md-4 services-w3-grid1 ser-left icon3 hi-icon-wrap hi-icon-effect-6">
+					<i class="fa fa-glass hi-icon hi-icon-sort-by-attributes" aria-hidden="true"></i>
+					<h4>Dinner</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisc elit. Proin ultricies vestibulum Lorem ipsum velit vestibulum velit adipisc elit Proin.</p>
+				</div>
+				<div class="clearfix"></div>
+				<div class="col-md-3 services-w3-grid2 ser-left icon4 hi-icon-wrap hi-icon-effect-6">
+					<i class="fa fa-apple hi-icon hi-icon-sort-by-attributes" aria-hidden="true"></i>
+					<h4>Supper food </h4>
+					<p>Lorem ipsum dolor sit amet adipisc elit. Proin ultricies vestibulum Loremipsum velit.</p>
+				</div>
+				<div class="col-md-3 services-w3-grid2 ser-left icon5 hi-icon-wrap hi-icon-effect-6">
+					<i class="fa fa-glass hi-icon hi-icon-sort-by-attributes" aria-hidden="true"></i>
+					<h4>Pasta ravioli</h4>
+					<p>Lorem ipsum dolor sit amet adipisc elit. Proin ultricies vestibulum velitLorem ipsum.</p>
+				</div>
+				<div class="col-md-3 services-w3-grid2 ser-left icon6 hi-icon-wrap hi-icon-effect-6"  data-wow-duration=".8s" data-wow-delay=".2s">
+					<i class="fa fa-leaf hi-icon hi-icon-sort-by-attributes" aria-hidden="true"></i>
+					<h4>Salads & Desserts</h4>
+					<p>Lorem ipsum dolor sit amet adipisc elit. Proin ultricies vestibulum velitdolor sit.</p>
+				</div>
+				<div class="col-md-3 services-w3-grid2 ser-left icon6 hi-icon-wrap hi-icon-effect-6"  data-wow-duration=".8s" data-wow-delay=".2s">
+					<i class="fa fa-gift hi-icon hi-icon-sort-by-attributes" aria-hidden="true"></i>
+					<h4>daily presents</h4>
+					<p>Lorem ipsum dolor sit amet adipisc elit. Proin ultricies vestibulum velitdolor sit.</p>
+				</div>
+				<div class="clearfix"></div>
+			</div>	
+		</div>
+</div>
+<!-- /services -->
+
+<!-- our chefs -->
+
+
+	
+<!-- gallery -->
+	
+
+
+<!-- customer -->
+	
+<!-- contact form -->
+	<div class="contact-w3ls" id="contact">
+		<div class="container">
+			<h3>contact form</h3>
+				<form action="#" method="post">
+					<div class="col-md-5 col-sm-5 contact-left agileits-w3layouts">
+					
+						<div class="form-control"> 
+							<label class="header">Full Name <span>:</span></label>
+							<input type="text" name="First Name" placeholder="Name" required="">
+						</div>
+						
+						<div class="form-control"> 
+							<label class="header">Email <span>:</span></label>
+							<input type="email"  class="email" name="Email" placeholder="Email" required="">
+						</div>
+						
+						<div class="form-control">
+							<label class="header">Mobile Number <span>:</span></label>
+							<input type="text" name="Number" placeholder="Mobile Number" required="">
+						</div>	
+						<!-- <input type="text" class="email" name="Last Name" placeholder="Last Name" required=""> -->
+					</div> 
+					<div class="col-md-7 col-sm-7 contact-right agileits-w3layouts">
+						<div class="form-control">
+							<label class="header">Message <span>:</span></label>
+							<textarea name="Message" placeholder="Message" required=""></textarea>
+						</div>	
+					<div class="clearfix"> </div> 
+					</div>
+						<input type="submit" value="Send">
+				</form>
+		</div>  
+	</div>  
+<!-- //contact form -->
+
+<!-- map -->
+<div class="map">
+		
+		<div class="agile_map_grid">
+			<div class="agile_map_grid1">
+				<h3>Contact Info</h3>
+				<ul>
+					<li><i class="fa fa-map-marker" aria-hidden="true"></i><span>address :</span> 507 Boylston St,Boston USA.</li>
+					<li><i class="fa fa-envelope" aria-hidden="true"></i><span>email :</span> <a href="mailto:info@example.com">info@example.com</a></li>
+					<li><i class="fa fa-phone" aria-hidden="true"></i><span>call us :</span> (+020) 142 3246 918</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+<!-- //map -->
+<!-- footer -->
+<div class="footer">
+		<div class="col-md-6 footer-left">
+			<h3>Bharat Food</h3>
+			<p>Morbi eget mollis erat, sit amet feugiat nulla. In hac habitasse platea dictumst. Sed ac fermentum eros.Pellentesque tincidunt nisi sit amet dui lobortis.Pulvinar pellentesque dui tempor</p>
+			<p>Sed iaculis, nisl a eleifend porttitor, diam mauris gravida arcu, suscipit ullamcorper nulla diam vitae lorem..</p>
+		</div>
+		<div class="col-md-6 footer-right">
+			<section class="subscribe" id="subscribe">
+					<h3>Newsletter</h3>
+				<form action="#" method="post" class="newsletter">
+					<input class="email" type="email" placeholder="Your email..." required="">
+					<input type="submit" class="submit" value="">
+				</form>
+			</section>
+			<h4>Follow us</h4>
+				<div class="wthree-icon">
+					<a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+					<a href="#" class="facebook"><i class="fa fa-facebook"></i></a> 
+					<a href="#" class="google"><i class="fa fa-google-plus"></i></a> 
+					<a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a> 
+				</div>  
+		</div>
+		<div class="clearfix"></div>
+</div>
+<!-- //footer -->
+
+<!-- copyright -->
+<div class="copyright-agile">
+	<p>&copy; 2017 Fresh Food. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+</div>
+<!-- //copyright -->
+
+<script src="{% static "js/jarallax.js" %}"></script>
+	<script src="{% static "js/SmoothScroll.min.js" %}"></script>
+	<script type="text/javascript">
+		/* init Jarallax */
+		$('.jarallax').jarallax({
+			speed: 0.5,
+			imgWidth: 1366,
+			imgHeight: 768
+		})
+	</script>
+	<script type="text/javascript" src="{% static "js/move-top.js" %}"></script>
+	<script type="text/javascript" src="{% static "js/easing.js" %}"></script>
+	<!-- here stars scrolling icon -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			/*
+				var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear' 
+				};
+			*/
+								
+			$().UItoTop({ easingType: 'easeOutQuart' });
+								
+			});
+	</script>
+<!-- //here ends scrolling icon -->
+
+
+<!-- Date-Picker-JavaScript -->
+				<script src="{% static "js/jquery-ui.js" %}"></script>
+				<script>
+					$(function() {
+						$( "#datepicker,#datepicker1,#datepicker2" ).datepicker();
+					});
+				</script>
+<!-- //Date-Picker-JavaScript -->
+
+<!-- banner text effect js file -->
+		<script src="{% static "js/modernizr.custom.72111.js" %}"></script>
+<!-- banner text effect js file -->
+
+
+
+</body>
+<!-- //Body -->
+</html>

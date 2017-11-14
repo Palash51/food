@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ request.user }}
+{% endblock %}
+{% block content %}
+    <p>Hello {{ request.user }}</p>
+                        <a href="{% url 'logout' %}"><input type="text" value="Logout" class="button is-primary"></a>
+{% endblock %}

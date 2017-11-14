@@ -1,0 +1,177 @@
+<!-- {% extends 'base.html' %} -->
+{% load staticfiles %}
+{% block title %}
+    Welcome
+{% endblock %}
+{% block content %}
+    <!-- <p>Hello {{ self.request.user }}</p> -->
+    <!-- <a href="{% url 'logout' %}"><input type="text" value="Home" class="button is-primary"></a> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<!-- Head -->
+<head>
+<title>Fresh Food a Hotel Category Bootstrap responsive Website Template | Home :: w3layouts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta name="keywords" content="Fresh Food a Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+
+<!-- Default-JavaScript-File -->
+	<script type="text/javascript" src="{% static "js/jquery-2.1.4.min.js" %}"></script>
+	<script type="text/javascript" src="{% static "js/bootstrap.js" %}"></script>
+<!-- //Default-JavaScript-File -->
+
+<link rel="stylesheet" href="{% static "css/easy-responsive-tabs.css" %}"><!-- easy responsive tabs css -->
+
+<link rel="stylesheet" href="{% static "css/jquery-ui.css" %}" type="text/css" media="all"><!-- date-picker css-->
+
+<!-- gallery -->
+	<link href="{% static "css/lsb.css" %}" rel="stylesheet" type="text/css">
+<!-- //gallery -->
+
+<!-- banner text effect css files -->
+    <link rel="stylesheet" type="text/css" href="{% static "css/demo.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "css/style3.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "css/normalize.css" %}" />
+<!-- banner text effect css files -->
+
+<!-- logo text effect css files -->
+	<link rel="stylesheet" type="text/css" href="{% static "css/demo1.css" %}" />
+	<link rel="stylesheet" type="text/css" href="{% static "css/linkstyles.css" %}" />
+<!-- //logo text effect css files -->
+	
+<!-- default css files -->
+	<link rel="stylesheet" href="{% static "css/bootstrap.css" %}" type="text/css" media="all">
+	<link rel="stylesheet" href="{% static "css/style.css" %}" type="text/css" media="all">
+	<link rel="stylesheet" href="{% static "css/font-awesome.min.css" %}" />
+<!-- default css files -->
+	
+<!--web font-->
+	<link href="//fonts.googleapis.com/css?family=Pacifico&amp;subset=latin-ext,vietnamese" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i,900,900i&amp;subset=cyrillic,latin-ext" rel="stylesheet">
+<!--//web font-->
+	
+<!-- scrolling script -->
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){		
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script> 
+<!-- //scrolling script -->
+
+</head>
+
+<body>
+
+<!-- banner -->
+	<div class="banner jarallax">
+		<div class="agileinfo-dot">
+			<div class="header">
+				<div class="container-fluid">
+					<div class="header-left">
+						<div class="w3layouts-logo grid__item">
+							<h1>
+								<a class="link link--ilin" href="{% url 'home' %}"><span>Fresh</span><span>Food</span></a>
+							</h1>
+						</div>
+					</div>
+					<div class="top-nav">
+						<nav class="navbar navbar-default">
+								<div class="navbar-header">
+									<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+										<span class="sr-only">Toggle navigation</span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+									</button>
+								</div>
+							<!-- Collect the nav links, forms, and other content for toggling -->
+							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+								<ul class="nav navbar-nav">
+									<li><a class="active" href="{% url 'home' %}">Home</a></li>
+									<li><a href="#about" class="scroll">About</a></li>
+									<li><a href="#services" class="scroll">Services</a></li>
+									<li><a href="#contact" class="scroll">Contact</a></li>
+									<li><a href="{% url 'logout' %}" >Logout</a>
+									</li>
+								</ul>
+						
+					<div class="clearfix"> </div>						
+							</div>	
+						</nav>
+						<div class="agileinfo-social-grids">
+							<ul>
+								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="#"><i class="fa fa-rss"></i></a></li>
+								<li><a href="#"><i class="fa fa-vk"></i></a></li>
+							</ul>
+						</div>
+						
+				</div>		
+					</div>
+					
+			</div>
+
+
+<!-- services -->
+
+<div class="services" id="services">
+		<div class="container">
+			<div class="ser-top wthree-3 wow fadeInDown w3-service-head">
+				<h3>Our Services </h3>
+			</div>
+			<div class="w3-service-grids set-6">
+				<div class="col-md-4  services-w3-grid1 ser-left icon1 hi-icon-wrap hi-icon-effect-6">
+					<i class="fa fa-cutlery hi-icon hi-icon-sort-by-attributes" aria-hidden="true"></i>
+					<h4>Breakfast</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisc elit. Proin  vestibulum velit.Lorem ipsum ultricies vestibulum velit adipisc elit Proin.</p>
+				</div>
+				<div class="col-md-4  services-w3-grid1 ser-left icon2 hi-icon-wrap hi-icon-effect-6">
+					<i class="fa fa-spoon hi-icon hi-icon-sort-by-attributes" aria-hidden="true"></i>
+					<h4>Lunch</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisc elit. Proin ultricies vestibulum Lorem ipsum velit vestibulum velit adipisc elit Proin.</p>
+				</div>
+				<div class="col-md-4 services-w3-grid1 ser-left icon3 hi-icon-wrap hi-icon-effect-6">
+					<i class="fa fa-glass hi-icon hi-icon-sort-by-attributes" aria-hidden="true"></i>
+					<h4>Dinner</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisc elit. Proin ultricies vestibulum Lorem ipsum velit vestibulum velit adipisc elit Proin.</p>
+				</div>
+				<div class="clearfix"></div>
+				<div class="col-md-3 services-w3-grid2 ser-left icon4 hi-icon-wrap hi-icon-effect-6">
+					<i class="fa fa-apple hi-icon hi-icon-sort-by-attributes" aria-hidden="true"></i>
+					<h4>Supper food </h4>
+					<p>Lorem ipsum dolor sit amet adipisc elit. Proin ultricies vestibulum Loremipsum velit.</p>
+				</div>
+				<div class="col-md-3 services-w3-grid2 ser-left icon5 hi-icon-wrap hi-icon-effect-6">
+					<i class="fa fa-glass hi-icon hi-icon-sort-by-attributes" aria-hidden="true"></i>
+					<h4>Pasta ravioli</h4>
+					<p>Lorem ipsum dolor sit amet adipisc elit. Proin ultricies vestibulum velitLorem ipsum.</p>
+				</div>
+				<div class="col-md-3 services-w3-grid2 ser-left icon6 hi-icon-wrap hi-icon-effect-6"  data-wow-duration=".8s" data-wow-delay=".2s">
+					<i class="fa fa-leaf hi-icon hi-icon-sort-by-attributes" aria-hidden="true"></i>
+					<h4>Salads & Desserts</h4>
+					<p>Lorem ipsum dolor sit amet adipisc elit. Proin ultricies vestibulum velitdolor sit.</p>
+				</div>
+				<div class="col-md-3 services-w3-grid2 ser-left icon6 hi-icon-wrap hi-icon-effect-6"  data-wow-duration=".8s" data-wow-delay=".2s">
+					<i class="fa fa-gift hi-icon hi-icon-sort-by-attributes" aria-hidden="true"></i>
+					<h4>daily presents</h4>
+					<p>Lorem ipsum dolor sit amet adipisc elit. Proin ultricies vestibulum velitdolor sit.</p>
+				</div>
+				<div class="clearfix"></div>
+			</div>	
+		</div>
+</div>
+
+</div>
+</div>
+</body>
+</html>
+
+{% endblock %}
