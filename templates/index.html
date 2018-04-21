@@ -1,5 +1,7 @@
 {% load staticfiles %}
 
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <!-- Head -->
@@ -137,11 +139,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div id="small-dialog2" class="mfp-hide book-form">
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h3>Order Your Meal</h3>
-					<form action="#" method="post">
+					<form action="{% url 'orders' %}" method="post">
+						{% csrf_token %}
 						<input type="text" name="Name" placeholder="Name" required=""/>
 						<input type="tel" name="number" placeholder="Mobile Number" required=""/>
 						<input type="email" name="Email" class="email" placeholder="Email" required=""/>
-						<div class="select-block1">
+						<!-- <div class="select-block1">
 							<select required="">
 								<option value="">Number Of Thali</option>
 								<option value="">1</option>
@@ -151,11 +154,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<option value="">5</option>
 								<option value="">More Than 5</option>
 							</select>
-						</div>
+						</div> -->
+
+						<input type="text" name="Thali" placeholder="Number Of Thali" required=""/>
 			
 						<input class="date" type="text" id="datepicker2"  name="datepicker2" placeholder="Date Of Arrival" title="Please enter your Arrival Date " required=""/>
 						<textarea name="Message" placeholder="Additional Information (Optional)" ></textarea>
 						<input type="submit" value="Confirm">
+
+
 					</form>
 			</div>
 		</div>

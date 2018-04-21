@@ -11,17 +11,14 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.http import HttpResponseForbidden, HttpResponse
-
+from django.shortcuts import render, redirect
+from django.core.urlresolvers import reverse
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, TemplateView
+from django.views.generic import CreateView, TemplateView, FormView
 
-from account.forms import RegisterUserForm, LoginForm
-#from account.models import Registration
-
-
-# def home(request):
-#     return render(request, 'account/home.html')
+from account.forms import RegisterUserForm, LoginForm, OrderMealForm
+from .models import OrderMeal
 
 class RegisterUserView(CreateView):
     form_class = RegisterUserForm
@@ -54,6 +51,26 @@ class DashboardView(TemplateView):
     
     def dispatch(self, request, *args, **kwargs):
         return super(DashboardView, self).dispatch(request, *args, **kwargs)
+
+class OrderMealView(FormView):
+    template_name = 'orders.html'
+    form = OrderMealForm
+    model = OrderMeal
+
+
+    def post(self, request, *args, **kwargs):
+        form = OrderMealForm(request.POST)
+        
+        if form.is_valid():
+            order_meal = form.save()
+            order_meal.name = request.POST['Name']
+            order_meal.mobile = request.POST['number']
+            order_meal.thali = request.POST['Thali']
+            order_meal.message = request.POST['Message']
+            order_meal.save()
+            
+        context= {'form': form }
+        return render(request, 'index.html', )
 
 
  

@@ -2,8 +2,9 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UsernameField
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from crispy_forms.helper import FormHelper
 # from account.models import Registration
-
+from .models import OrderMeal
 
 class RegisterUserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input'}))
@@ -31,3 +32,17 @@ class LoginForm(AuthenticationForm):
         widget=forms.TextInput(attrs={'class': 'input', 'autofocus': True, 'placeholder': 'username'})
     )
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input', 'placeholder': 'password'}))
+
+
+class OrderMealForm(forms.ModelForm):
+    name = forms.TextInput(attrs={'class': 'input', 'autofocus': True})
+
+    class Meta:
+        model = OrderMeal
+        fields = ('name', 'mobile', 'email', 'thali', 'delivery_date', 'message',)
+
+    def __init__(self, *args, **kwargs):
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+        self.helper.form_show_errors = False
+        super(OrderMealForm, self).__init__(*args, **kwargs)

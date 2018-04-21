@@ -3,7 +3,7 @@ from django.conf import settings
 
 from django.contrib.auth.views import LogoutView
 from account import views
-from account.views import RegisterUserView, LoginUserView, DashboardView
+from account.views import RegisterUserView, LoginUserView, DashboardView, OrderMealView
 from django.contrib.auth.views import logout
 
 urlpatterns = [
@@ -15,5 +15,7 @@ urlpatterns = [
     url(r'^logout/$', logout, {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
 
     #url(r'^logout/$', view=LogoutView.as_view(), name='logout'),
-    url(r'^dashboard/$', view=DashboardView.as_view(), name='dashboard')
+    url(r'^dashboard/$', view=DashboardView.as_view(), name='dashboard'),
+
+    url(r'^orders/$', view=OrderMealView.as_view(), name='orders')
 ]
