@@ -1,0 +1,113 @@
+{% include 'dashboard/base_dashboard.html' %}
+{% include 'dashboard/left-sidebar.html' %}
+
+{% load staticfiles %}
+
+{% load static %}
+
+<body>
+
+  <div class="main-panel">
+
+    {% include 'dashboard/nav-bar.html' %}
+    
+    <div class="container">
+      <h2>Your Order History</h2>
+      <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#home">Breakfast</a></li>
+        <li><a data-toggle="tab" href="#menu1">Lunch</a></li>
+        <li><a data-toggle="tab" href="#menu2">Dinner</a></li>
+      </ul>
+    <div id="menu1" class="tab-pane fade">
+      <div class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+          <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="header">
+                                    <h4 class="title">My Orders</h4>
+                                    <p class="category">Details of all the orders</p>
+                                </div>
+                                <div class="content table-responsive table-full-width">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Contact</th>
+                                            <th>Thali</th>
+                                            <th>Date</th>
+                                        </thead>
+                                        <tbody>
+                                            {% for obj in object_list %}
+                                                <tr>
+                                                    <td>{{ forloop.counter }}</td>
+                                                    <td>{{obj.name}}</td>
+                                                    <td>{{obj.mobile}}</td>
+                                                    <td>{{obj.thali}}</td>
+                                                    <td>{{obj.date}}</td>
+                                                </tr>
+                                            {% endfor %}
+                                 
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>   
+                 </div>
+                </div>
+            </div>
+         </div>
+         </div>
+      </div>
+    </div>
+
+
+<!-- tab ends -->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">My Orders</h4>
+                                <p class="category">Details of all the orders</p>
+                            </div>
+                            <div class="content table-responsive table-full-width">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <th>ID</th>
+                                    	<th>Name</th>
+                                    	<th>Contact</th>
+                                    	<th>Thali</th>
+                                    	<th>Date</th>
+                                    </thead>
+                                    <tbody>
+                                        {% for obj in object_list %}
+                                            <tr>
+                                                <td>{{ forloop.counter }}</td>
+                                                <td>{{obj.name}}</td>
+                                                <td>{{obj.mobile}}</td>
+                                                <td>{{obj.thali}}</td>
+                                                <td>{{obj.date}}</td>
+                                            </tr>
+                                        {% endfor %}
+                             
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>   
+             </div>
+            </div>
+        </div>
+
+<!-- footer -->
+{% include 'dashboard/footer.html' %}
+<!-- footer -->
+</body>
+
+</html>

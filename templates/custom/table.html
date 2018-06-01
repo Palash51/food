@@ -1,0 +1,120 @@
+{% load django_tables2 %}
+{% load i18n %}
+
+<div class="table-container">
+    {% block table %}
+    <table{% if table.attrs %} {{ table.attrs.as_html }}{% endif %}>
+    {% block table.thead %}
+    {% if table.show_header %}
+    <thead>
+        <tr>
+            {% for column in table.columns %}
+            {% if column.orderable %}
+            <th {{ column.attrs.th.as_html }}><a href="{% querystring table.prefixed_order_by_field=column.order_by_alias.next %}">{{ column.header }}</a></th>
+            {% else %}
+            <th {{ column.attrs.th.as_html }}>{{ column.header }}</th>
+            {% endif %}
+            {% endfor %}
+        </tr>
+    </thead>
+    {% endif %}
+    {% endblock table.thead %}
+    {% block table.tbody %}
+    <tbody>
+        {% for row in table.page.object_list|default:table.rows %} {# support pagination #}
+        {% block table.tbody.row %}
+        <tr {{ row.attrs.as_html }}>
+            {% for column, cell in row.items %}
+            <td {{ column.attrs.td.as_html }}>{% if column.localize == None %}{{ cell }}{% else %}{% if column.localize %}{{ cell|localize }}{% else %}{{ cell|unlocalize }}{% endif %}{% endif %}</td>
+            {% endfor %}
+        </tr>
+        {% endblock table.tbody.row %}
+        {% empty %}
+        {% if table.empty_text %}
+        {% block table.tbody.empty_text %}
+        <tr><td colspan="{{ table.columns|length }}">{{ table.empty_text }}</td></tr>
+        {% endblock table.tbody.empty_text %}
+        {% endif %}
+        {% endfor %}
+    </tbody>
+    {% endblock table.tbody %}
+    {% block table.tfoot %}
+    {% if table.has_footer %}
+    <tfoot>
+        <tr>
+            {% for column in table.columns %}
+            <td>{{ column.footer }}</td>
+            {% endfor %}
+        </tr>
+    </tfoot>
+    {% endif %}
+    {% endblock table.tfoot %}
+</table>
+{% endblock table %}
+
+{% if table.page %}
+{% with table.page.paginator.count as all_rows_count %}
+{% with table.page.number as current_page %}
+{% with table.page.paginator.num_pages as pages_count %}
+{% with table.page.start_index as start_index %}
+{% with table.page.end_index as end_index %}
+{% with table.page.object_list|length as rows_in_page_count %}
+{% block pagination %}
+{% if table.page.has_previous or table.page.has_next %}
+<div class="row">
+    <div class="col-md-3 pull-right">
+        <div class="dataTables_paginate paging_simple_numbers">
+            <ul class="pagination">
+                {% if table.page.has_previous %}
+                <li class="paginate_button previous">
+                    <a href="{% querystring table.prefixed_page_field=table.page.previous_page_number %}">
+                        <strong>
+                            Previous
+                        </strong>
+                    </a>
+                </li>
+                {% else %}
+                <li class="paginate_button previous disabled">
+                    <a href="#">Previous</a>
+                </li>
+                {% endif %}
+
+                <li class="paginate_button disabled">
+                    <a href="#">
+                        {% if all_rows_count != rows_in_page_count %}
+                        <!-- page {{current_page}} of {{pages_count}}: showing {{start_index}} to {{end_index}} of {{all_rows_count}} -->
+                        {{current_page}}/ {{pages_count}}
+                        {% else %}
+                        {{ all_rows_count }}
+                        {% endif %} 
+                    </a>
+                </li>
+
+                {% if table.page.has_next %}
+                <li class="paginate_button next">
+                    <a href="{% querystring table.prefixed_page_field=table.page.next_page_number %}">
+                        <strong>
+                            Next
+                        </strong>
+                    </a>
+                </li>
+                {% else %}
+                <li class="paginate_button next disabled">
+                    <a href="#">Next</a>
+                </li>
+                {% endif %}
+
+            </ul>
+
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock pagination %}
+{% endwith %}
+{% endwith %}
+{% endwith %}
+{% endwith %}
+{% endwith %}
+{% endwith %}
+{% endif %}

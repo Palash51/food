@@ -4,6 +4,32 @@
 {% endblock %}
 
 {% block content %}
+
+<nav class="navbar">
+    <div class="navbar-brand">
+       
+        <div class="navbar-burger burger" data-target="nav-data">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+        <div class="navbar-menu" id="nav-data">
+            <a href="/" class="navbar-item">Home</a>
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="field is-grouped">
+                        <!-- <p class="control">
+                            <a href="{% url 'register' %}" class="button is-primary">
+                                <span>SIGN UP</span>
+                            </a>
+                         </p> -->
+                    </div>
+                </div>
+        </div>
+    </div>
+
+</nav>
     <div class="container">
         <div class="columns is-mobile">
             <div class="column is-half is-offset-one-quarter">

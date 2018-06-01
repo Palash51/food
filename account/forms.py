@@ -3,19 +3,24 @@ from django.contrib.auth.forms import AuthenticationForm, UsernameField
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from crispy_forms.helper import FormHelper
+from django.conf import settings
 # from account.models import Registration
 from .models import OrderMeal
 
 class RegisterUserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input'}))
     password2 = forms.CharField(label="Repeat password", widget=forms.PasswordInput(attrs={'class': 'input'}))
+    # address = forms.CharField(label="Repeat password", widget=forms.TextInput(attrs={'class': 'input', 'autofocus': True}))
+    # Pin = forms.CharField(label="Repeat password", widget=forms.TextInput(attrs={'class': 'input', 'autofocus': True}))
 
     class Meta:
         model = User
         fields = ['username', 'email']
         widgets = {
             'username': forms.TextInput(attrs={'class': 'input', 'autofocus': True}),
-            'email': forms.EmailInput(attrs={'class': 'input', 'required': True})
+            'email': forms.EmailInput(attrs={'class': 'input', 'required': True}),
+            # 'address': forms.TextInput(attrs={'class': 'input', 'autofocus': True}),
+            # 'Pin': forms.TextInput(attrs={'class': 'input', 'autofocus': True})
         }
 
     # Validating password
@@ -36,6 +41,7 @@ class LoginForm(AuthenticationForm):
 
 class OrderMealForm(forms.ModelForm):
     name = forms.TextInput(attrs={'class': 'input', 'autofocus': True})
+    # delivery_date = forms.DateField(input_formats=settings.DATE_INPUT_FORMATS)
 
     class Meta:
         model = OrderMeal

@@ -6,5 +6,8 @@ from django.views.generic import TemplateView
 urlpatterns = [
 	url(r'^$', TemplateView.as_view(template_name='index.html'), name='home'),
     url(r'^account/',include("account.urls")),
+    url(r'^cart/',include("cart.urls", namespace='cart')),
+    url(r'^orders/', include('orders.urls', namespace='orders')),
+    url(r'^shop/', include('shop.urls', namespace='shop')),
     url(r'^admin/', admin.site.urls),
 ]
