@@ -13,8 +13,6 @@ def order_create(request):
         if form.is_valid():
             order = form.save()
             for item in cart:
-              import pdb
-              pdb.set_trace()
               OrderItem.objects.create(order=order,
                                          product=item['product'],
                                          price=item['price'],
