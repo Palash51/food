@@ -1,6 +1,12 @@
 # Food
 Food ordering application using Django Framework
 
+# Multi-role for Restaurants  
+Restaurants will have owner, managers, cooks and other employees
+based on their role everyone will have different permissions and accessibility.
+
+Added Dashboard features to track ordered food
+
 # Track Orders
 Added Dashboard features to track ordered food
 
