@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load viewflow %}
+{% load render_table from django_tables2 %}
+
+{% block title %}
+Task
+{% endblock %}
+
+{% block main_content %}
+
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <i class="fa fa-tasks"></i>
+        <h3 class="box-title">Details</h3>
+    </div>
+    <div class="box-body">
+        {% with activation.task.processrevision.object as process %}
+        <dl class="dl-horizontal">
+            <dt>Business Unit</dt>
+            <dd>{{process.businessunit.name}}</dd>
+            <dt>Vacancy</dt>
+            <dd>{{process.position.name}}</dd>
+            <dt>Created</dt>
+            <!-- process.created DOES NOT WORK -->
+            <dd>{{activation.task.process.created}}</dd>
+            <dt>Business need</dt>
+            <dd>{{process.business_need}}</dd>
+        </dl>
+        {% endwith %}
+    </div>
+    <div class="box-footer">
+        {% flowurl activation.task 'assign' user=request.user as assign_url %}
+
+        {% if assign_url %}
+        <a href="{{ assign_url }}?{{ task }}" class="btn btn-primary">Assign</a>
+        {% endif %}
+
+        {% flowurl activation.task 'unassign' user=request.user as unassign_url %}
+        {% if request.user == activation.task.owner %}
+        {% if unassign_url %}
+        <a href="{{ unassign_url }}?{{ task }}" class="btn btn-primary">Unassign</a>
+        {% endif %}
+        {% endif %}
+
+        {% flowurl activation.task 'execute' user=request.user as execute_url %}
+        {% if execute_url %}
+        <a href="{{ execute_url }}?{{ task }}" class="btn btn-primary">Execute</a>
+        {% endif %}
+
+        {% comment 'do not show link to task details in task details' %}
+            {% flowurl activation.task 'detail' user=request.user as detail_url %}
+            {% if detail_url %}
+            <a href="{{ detail_url }}?{{ task }}" class="btn btn-primary">Details</a>
+            {% endif %}
+        {% endcomment %}
+        
+        <a href="{% url 'flow:tasks_in_progress' %}" class="btn btn-default">Tasks</a>
+    </div>
+</div>
+<div class="row">
+    {% if activation.task.attachments.count %}
+    <div class="col-md-6">
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">Attachments</h3>
+            </div>
+            <div class="box-body no-padding">
+            </div>
+            <div class="box-body no-padding">
+                <div class="table-container">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="title">Title</th>
+                                <th class="attachment_type">Attachment Type</th>
+                                <th class="uploaded_by">Uploaded By</th>
+                                <th class="uploaded_on">Uploaded On</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for attachment in activation.task.attachments.all %}
+                            <tr>
+                                <td><a target="_blank" href="{{ attachment.file.url }}">{{ attachment.title }}</a></td>
+                                <td>{{ attachment.attachment_type }}</td>
+                                <td>{{ attachment.uploaded_by }}</td>
+                                <td>{{ attachment.uploaded_on }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% if activation.task.open_vacancy_notes.count %}
+    <div class="col-md-6">
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">Notes</h3>
+            </div>
+            <div class="box-body box-comments">
+                {% for note in activation.task.open_vacancy_notes.all %}
+                    <div class="box-comment">
+                        <img class="img-responsive img-circle img-sm" src="{% static 'images/user.png' %}" alt="User Image">
+                        <div class="comment-text">
+                            <span class="username">
+                                {{ note.added_by }}
+                                <span class="text-muted pull-right">{{ note.added_on }}</span>
+                            </span> {{ note.text }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock main_content %}

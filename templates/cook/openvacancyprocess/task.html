@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% load tags %}
+{% load viewflow %}
+{% load flowutils_tags %}
+{% load crispy_forms_tags %}
+{% load render_table from django_tables2 %}
+
+{% block title %}
+Task - {{ activation.task.flow_task.task_title }}
+{% endblock %}
+
+{% block main_content %}
+
+<div class="row">
+    <div class="col-md-12">
+        <form action="." method="post" class="form">
+            <div class="box box-primary">
+                <div class="box-header">
+                    {% render_process_path activation.process.flow_label activation.task.name %}
+                </div>
+                <div class="box-body">
+                    <dl class="dl-horizontal">
+                        <dt>Business Unit</dt>
+                        <dd>{{activation.process.businessunit.name}}</dd>
+                        <dt>Vacancy</dt>
+                        <dd>{{activation.process.position.name}}</dd>
+                        <dt>Created</dt>
+                        <dd>{{activation.process.created}}</dd>
+                        <dt>Business need</dt>
+                        <dd>{{activation.process.business_need}}</dd>
+                    </dl>
+                    {% csrf_token %}
+                    {% crispy form %}
+                    {{ activation.management_form }}
+                </div>
+                <div class="box-footer">
+                    <button type="submit" name="_start" class="btn btn-primary">Save</button>
+                    <button type="submit" name="_continue" class="btn btn-success">Submit</button>
+                    {% flowurl activation.task 'detail' user=request.user ns=activation.task.process_namespace as detail_url %}
+                    {% if request.user == activation.task.owner %}
+                    {% if detail_url %}
+                    <a href="{{ detail_url }}?{{ task }}" class="btn btn-primary">Details</a>
+                    {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row">
+    {% if notes %}
+    <div class="col-md-6">
+        {% show_notes "vacancy:open_vacancy_note_create" "vacancy:open_vacancy_note_delete" %}
+    </div>
+    {% endif %}
+</div>
+{% endblock main_content %}

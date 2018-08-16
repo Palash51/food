@@ -1,0 +1,9 @@
+<button
+    class="btn btn-sm btn-danger"
+    name="remove"
+    value="{{ record.pk }}">
+    <i class="fa fa-times"></i>&nbsp; Remove
+    </button>
+<a class="btn btn-sm btn-primary" href="{% url 'vacancy:candidate_update' record.pk %}">
+    <i class="fa fa-edit"></i>&nbsp; Update
+</a>

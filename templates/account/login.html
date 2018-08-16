@@ -49,7 +49,9 @@
                         </div>
                     {% endfor %}
                     <input type="submit" value="SIGN IN" class="button is-primary">
-                    <a href="{% url 'register' %}"><input type="text" value="SIGN UP" class="button is-primary"></a>
+                    <a href="{% url 'register' %}"><input type="" value="SIGN UP" class="button is-primary"></a>
+                    <span class="psw">Forgot <a href="{% url 'password_reset' %}"</a>password?</span>
+                    
                 </form>
         
             </div>

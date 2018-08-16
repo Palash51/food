@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+Unassign task
+{% endblock %}
+
+{% block main_content %}
+
+<div class="row">
+    <div class="col-md-10">
+        <form action="." method="post" class="form">
+            {% csrf_token %}
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{{ activation.task.flow_task.task_title }}</h3>
+                </div>
+                <div class="box-body">
+                    <div class="box-body">
+                        <dl class="dl-horizontal">
+                            <dt>Business Unit</dt>
+                            <dd>{{activation.process.businessunit.name}}</dd>
+                            <dt>Vacancy</dt>
+                            <dd>{{activation.process.position.name}}</dd>
+                            <dt>Created</dt>
+                            <dd>{{activation.process.created}}</dd>
+                            <dt>Business need</dt>
+                            <dd>{{activation.process.business_need}}</dd>
+                        </dl>
+                    </div>
+                    {{ form }}
+                    {% if activation.management_form %}
+                    {{ activation.management_form }}
+                    {% endif %}
+                </div>
+                <div class="box-footer">
+                    <button type="submit" name="run_action" class="btn btn-success">Unassign Myself</button>
+                    <a href="{% url 'flow:tasks_in_progress' %}" class="btn btn-default">
+                        <span class="glyphicon glyphicon-tasks"></span> Assigned Tasks
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock main_content %}

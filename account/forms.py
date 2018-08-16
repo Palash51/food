@@ -7,6 +7,46 @@ from django.conf import settings
 # from account.models import Registration
 from .models import OrderMeal
 
+from django import forms
+
+from crispy_forms.helper import FormHelper
+
+
+class BaseHorizontalFormMixin(forms.Form):
+    """Customized form class that better displays crispy forms"""
+
+    def __init__(self, *args, **kwargs):
+        """initializes form with desired style configuration"""
+        super(BaseHorizontalFormMixin, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-sm-2'
+        self.helper.field_class = 'col-sm-10'
+        self.helper.form_tag = False
+
+
+class BaseFormMixin(forms.Form):
+    """Customized form class that better displays crispy forms"""
+
+    def __init__(self, *args, **kwargs):
+        """initializes form with desired style configuration"""
+        super(BaseFormMixin, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_class = 'form'
+        self.helper.form_tag = False
+
+
+class BaseHorizontalForm(forms.ModelForm, BaseHorizontalFormMixin):
+    """Customized form class that better displays crispy forms"""
+
+
+class BaseForm(forms.ModelForm, BaseFormMixin):
+    """Customized form class that better displays crispy forms"""
+
+
+
+
+
 class RegisterUserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input'}))
     password2 = forms.CharField(label="Repeat password", widget=forms.PasswordInput(attrs={'class': 'input'}))

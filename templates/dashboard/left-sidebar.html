@@ -29,10 +29,12 @@
                     </a>
                 </li>
                 <li>
-                    <a href="typography.html">
+                    {% if user_role.is_owner %}
+                    <a href="{% url 'cook:cook_list' %}">
                         <i class="ti-text"></i>
-                        <p>Typography</p>
+                        <p>Cook</p>
                     </a>
+                    {% endif %}
                 </li>
                 <li>
                     <a href="icons.html">

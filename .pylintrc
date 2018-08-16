@@ -1,0 +1,24 @@
+[MASTER]
+persistent=yes
+ignore=migrations,tests
+cache-size=500
+load-plugins=pylint_django
+
+[MESSAGES_CONTROL]
+disable=fixme,
+        attribute-defined-outside-init,
+        no-member,
+        invalid-name,
+        no-self-use,
+        redefined-variable-type,
+        too-few-public-methods,
+        too-many-ancestors,
+        too-many-lines,
+        too-many-instance-attributes,
+        too-many-public-methods,
+        too-many-return-statements,
+	wildcard-import
+
+[MISCELLANEOUS]
+notes=FIXME,XXX,TODO
+

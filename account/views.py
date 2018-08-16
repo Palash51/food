@@ -17,10 +17,13 @@ from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
+from django.contrib import messages
+from django.contrib.auth.models import User, Group
+
 from django.views.generic import CreateView, TemplateView, FormView
 
 from account.forms import RegisterUserForm, LoginForm, OrderMealForm
-from .models import OrderMeal
+from .models import OrderMeal, UserProfile
 from account import tables
 
 class RegisterUserView(CreateView):
@@ -37,14 +40,23 @@ class RegisterUserView(CreateView):
         user = form.save(commit=False)
         user.set_password(form.cleaned_data['password'])
         user.save()
+        # import pdb
+        # pdb.set_trace()
+        UserProfile.objects.create(user=User.objects.get(id=user.id))
+        messages.success(
+            self.request, "You have been successfully registered")
+        
         return render(self.request, 'account/welcome.html', {'form': form})
         #return HttpResponse('User registered')
+
 
 
 class LoginUserView(LoginView):
     form_class = LoginForm
     template_name = "account/login.html"
     redirect_authenticated_user = True
+    # import pdb
+    # pdb.set_trace()
     success_url = reverse_lazy('dashboard')
 
 
@@ -77,6 +89,20 @@ class DashboardView(SingleTableMixin, generic.ListView):
     model = OrderMeal
     table_class = tables.OrderMealTable
     context_table_name = 'ordermeal_table'
+
+
+    def get_context_data(self, **kwargs):
+        context = super(DashboardView,
+                        self).get_context_data(**kwargs)
+        context['user_role'] = self.request.user.profile
+        return context
+
+
+    # def get(self, request, *args, **kwargs):
+    #     import pdb
+    #     pdb.set_trace()
+    #     print(self.request.user)
+    #     return 
     
 
 class OrderMealListView(SingleTableMixin, generic.ListView):

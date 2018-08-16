@@ -122,6 +122,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!-- services -->
 
+		<div class="message">
+                    {% for message in messages %}
+                        <div
+                     {% if message.tags == 'error' %}
+                         class="alert alert-danger alert-dismissible"
+                     {% else %}
+                             class="alert alert-{{message.tags}} alert-dismissible"
+                         {% endif %}
+                             >
+                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                             {{message}}
+                        </div>
+                    {% endfor %}
+        </div>
+
+
+
+
 <div class="services" id="services">
 		<div class="container">
 			<div class="ser-top wthree-3 wow fadeInDown w3-service-head">

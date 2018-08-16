@@ -28,7 +28,6 @@ def cart_remove(request, product_id):
 
 def cart_detail(request):
     cart = Cart(request)
-    # 使用 for in 的時候，他會開始迭代，並且呼叫 `__iter__`
     for item in cart:
         item['update_quantity_form'] = CartAddProductForm(
             initial={

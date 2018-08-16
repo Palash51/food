@@ -14,9 +14,20 @@
 <body>
 
 <div class="container">
-    <div class="page-header">
-        <a href="{% url 'shop:product_list' %}"><h1>Menu</h1></a>
-    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul class="nav navbar-nav">
+                                    <li><a class="active" href="{% url 'home' %}">Home</a></li>
+                                    <li><a href="{% url 'shop:product_list' %}">Menu</a></li>
+                                    <!-- <li><a href="#services" class="scroll">Menu</a></li> -->
+                                    <!-- <li><a href="#about" class="scroll">About</a></li>
+                                    <li><a href="#contact" class="scroll">Contact</a></li>
+                                    <li><a href="{% url 'login' %}" >SignUp/LogIn</a> -->
+                                    </li>
+                                </ul>
+                        
+                <div class="clearfix"> </div>                       
+     </div>  
+
     <div class="panel panel-default">
         <div class="panel-heading">
             {# call __len__ #}

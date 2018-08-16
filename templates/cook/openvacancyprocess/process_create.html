@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% load viewflow %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <h3>Open Vacancy Process Information</h3>
+{% endblock title %}
+
+{% block main_content %}
+    
+<div class="row">
+    <div class="col-md-12">
+        <form action="." method="post" class="form-horizontal">
+            <div class="box box-primary">
+                <div class="box-body">
+                    {% csrf_token %}
+                    {% crispy form %}
+                    {{ activation.management_form }}
+                </div>
+                <div class="box-footer">
+                    <button type="submit" name="_continue" class="btn btn-success">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

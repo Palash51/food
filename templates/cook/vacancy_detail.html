@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+{% load render_table from django_tables2 %}
+
+{% block title %}
+Vacancy Details
+{% endblock %}
+
+{% block main_content %}
+<div class="row">
+    <div class="col-md-10">
+        <div class="box box-primary">
+            <div class="box-body">
+                <dl class="dl-horizontal">
+                    <dt>Business Unit</dt>
+                    <dd>{{object.businessunit.name}}</dd>
+                    <dt>Position</dt>
+                    <dd>{{object.position.name}}</dd>
+                    <dt>Created</dt>
+                    <dd>{{object.created}}</dd>
+                </dl>
+            </div>
+            <div class="box-footer">
+                <a class="btn btn-default" href="{% url 'vacancy:vacancy_list' %}">
+                    Vacancies
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main_content %}

@@ -1,0 +1,25 @@
+
+{% load render_table from django_tables2 %}
+{% load static %}
+
+{% block title %}
+Cooks
+{% endblock %}
+
+{% block main_content %}
+
+<div class="box box-primary">
+    <div class="box-body">
+        <a class="btn btn-primary" href="{% url 'cook:cook_create' %}">New</a>
+        
+
+    </div>
+    <div class="box-body no-padding">
+        <form method="post" action="{% url 'cook:cook_delete' %}">
+            {% csrf_token %}
+           {% render_table cook "custom/table.html" %}
+        </form>
+    </div>
+</div>
+
+{% endblock main_content %}

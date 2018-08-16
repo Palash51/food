@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load viewflow %}
+{% load static %}
+
+{% block nav_parcels_cls %}class="active"{% endblock %}
+
+{% block title %}
+{{ process.title }}
+{% endblock %}
+
+{% block title_note %}
+Open Vacancy Flow
+{% endblock %}
+
+{% block main_content %}
+<div class="row">
+<div class="col-md-12">
+    <div class="box box-primary">
+        <div class="box-header">
+            <i class="fa fa-clipboard"></i>
+            <h3 class="box-title">Visualization</h3>
+        </div>
+        <div class="box-body">
+            <object type="image/svg+xml" data="{% url 'flow:process_graph' process.flow_label process.id %}">
+                Your browser does not support SVG or process diagram does not exist
+            </object>
+        </div>
+    </div>
+</div>
+<div class="col-md-6">
+    <ul class="timeline">
+    {% regroup task_list by created|date:"d M, Y" as tasks %}
+    {% for group in tasks %}
+        <li class="time-label">
+            <span class="bg-red">
+                {{ group.grouper }}
+            </span>
+        </li>
+        {% for task in group.list %}
+            {% flowurl task user=request.user as task_url %}
+            <li>
+                {% if task.owner %}
+                    <i class="fa fa-user bg-green"></i>
+                {% else %}
+                    <i class="fa fa-gears bg-blue"></i>
+                {% endif %}
+                <div class="timeline-item">
+                    <span class="time">
+                        <i class="fa fa-clock-o"></i>
+                        {{ task.created|time }}
+                    </span>
+                    <h3 class="timeline-header">
+                        <a href="{{task_url}}">
+                            {{ task.topic|default:task.flow_task.task_title }}
+                        </a>
+                    {% if task.owner %} by 
+                    <strong>
+                        {{ task.owner|default_if_none:'' }}
+                    </strong>
+                    {% endif %}
+                    </h3>
+                    {% if task.owner %}
+                    {% if task.open_vacancy_notes.all %}
+                    <div class="timeline-body">
+                        {% for note in task.open_vacancy_notes.all %}
+                        <p>
+                            <i class="fa fa-comment"></i>
+                            {{ note.text }}
+                        </p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% endif %}
+                </div>
+                    <!-- <div class="timeline-footer">
+                        <a class="btn btn-primary btn-xs">...</a>
+                    </div> -->
+            </li>
+        {% endfor %}
+    {% endfor %}
+    </ul>
+</div>
+<div class="col-md-6">
+    <div class="box box-primary">
+        <div class="box-header">
+            <i class="fa fa-clipboard"></i>
+            <h3 class="box-title">Information</h3>
+        </div>
+        <div class="box-body no-padding">
+            <table class="table table-bordered table-condensed table-hover">
+                <tbody>
+                    <tr>
+                        <td><strong>Initiator</strong></td>
+                        <td>{{process.created_by}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Initiated at</strong></td>
+                        <td>{{process.created}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Business Unit</strong></td>
+                        <td>{{process.businessunit.name}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Position</strong></td>
+                        <td>{{process.position.name}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Status</strong></td>
+                        <td>{{process.status}}</td>
+                    </tr>
+                    {% if process.finished %}
+                        <tr>
+                            <td><strong>Completed At</strong></td>
+                            <td>{{process.finished}}</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

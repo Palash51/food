@@ -20,11 +20,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_tables2',
+    'django_extensions',
+    'crispy_forms',
     'account',
     'cart',
     'bootstrap3',
     'shop',
     'orders',
+    'cook',
+
+    'behave',
+    'behave_django',
+
 ]
 
 MIDDLEWARE = [
@@ -64,7 +71,7 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'food',
+        'NAME': 'food_new',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
@@ -95,17 +102,19 @@ AUTH_PASSWORD_VALIDATORS = [
 # }
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
+
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 
 EMAIL_HOST_USER = 'palashpatidar17@gmail.com'
-EMAIL_HOST_PASSWORD = '01121995#'
+EMAIL_HOST_PASSWORD = '01121994#'
 EMAIL_PORT = 587
 
+DEFAULT_FROM_EMAIL = '<palashpatidar17@gmail.com>'
 
 
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 LANGUAGE_CODE = 'en-us'
 
