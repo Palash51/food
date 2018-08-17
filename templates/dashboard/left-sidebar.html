@@ -1,3 +1,4 @@
+{% load custom_tags %}
 {% load static %}
 
 <div class="wrapper">
@@ -11,13 +12,13 @@
 
             <ul class="nav">
                 <li class="active">
-                    <a href="dashboard.html">
+                    <a href="{% url 'dashboard' %}">
                         <i class="ti-panel"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
                 <li>
-                    <a href="user.html">
+                    <a href="{% url 'myprofile' request.user.id %}">
                         <i class="ti-user"></i>
                         <p>User Profile</p>
                     </a>

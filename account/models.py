@@ -24,9 +24,6 @@ from django.contrib.auth.models import User, Group
 from mptt.models import MPTTModel, TreeForeignKey
 
 
-
-
-
 class BusinessUnit(MPTTModel):
     """BusinessUnit example- sarvana hotel
     """
@@ -51,12 +48,12 @@ class BusinessUnit(MPTTModel):
 
     @property
     def restaurant_manager(self):
-        """returns the general manager of a business unit"""
+        """returns the restaurant manager of a business unit"""
         return self.employee_by_position('restaurant_manager')
 
     @property
     def restaurant_owner(self):
-        """returns the group general manager of any business unit"""
+        """returns the restaurant owner of a business unit"""
         return BusinessUnit.objects.filter(
             level=0
         )[0].employee_by_position('restaurant_owner')
@@ -109,12 +106,12 @@ class Employment(MPTTModel):
     employment_date = DateField(null=True)
 
 
-
 class UserProfile(Model):
 
     """model holding relation between business unit and
     roles played by employee"""
-    user = OneToOneField(User, on_delete=CASCADE, null=True, related_name='profile')
+    user = OneToOneField(User, on_delete=CASCADE,
+                         null=True, related_name='profile')
     employee = OneToOneField(
         Employee, on_delete=CASCADE, null=True, related_name='profile')
 
@@ -140,14 +137,13 @@ class UserProfile(Model):
 
     @property
     def is_owner(self):
-        """Checks if employee is gm"""
+        """Checks if employee is owner of restaurant"""
         return 'restaurant_owner' in self.user_groups()
 
     @property
     def is_manager(self):
-        """Checks if employee is fm"""
+        """Checks if employee is manager of restaurant"""
         return 'restaurant_manager' in self.user_groups()
-
 
     def is_user(self, *groups):
         """Checks user is member of ALL groups"""
@@ -157,14 +153,6 @@ class UserProfile(Model):
     def businessunit(self):
         """Returns the businessunit of the employee"""
         return self.employee.businessunit
-
-
-
-
-
-
-
-
 
 
 class OrderMeal(models.Model):

@@ -1,7 +1,7 @@
-"""Vacancy application configurations"""
+"""cook application configurations"""
 from django.apps import AppConfig
 
 
-class VacancyConfig(AppConfig):
-    """Vacancy application configuration"""
+class CookConfig(AppConfig):
+    """cook application configuration"""
     name = 'cook'

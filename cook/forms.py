@@ -28,13 +28,5 @@ class CookUpdateForm(BaseHorizontalForm):
         fields = ['name', 'email', 'information']
 
 
-class VacancyUpdateForm(BaseHorizontalForm):
-    """Update vacancy form"""
-
-    class Meta:
-        """form meta class"""
-        model = Vacancy
-        fields = ['businessunit', 'position']
-
 
 

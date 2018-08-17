@@ -3,7 +3,10 @@ from django.shortcuts import redirect, get_object_or_404
 # from django.core.urlresolvers import reverse_lazy, reverse
 from django.urls import reverse_lazy, reverse
 from django.views import generic
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import (
+                    LoginRequiredMixin,
+                    PermissionRequiredMixin
+                )
 
 from django_tables2 import SingleTableView
 
@@ -17,18 +20,18 @@ from . import tables
 from . import forms
 
 
-
-
-class CookListView(LoginRequiredMixin, SingleTableView):
+class CookListView(LoginRequiredMixin,
+                   PermissionRequiredMixin,
+                   SingleTableView):
     """cook list"""
+    permission_required = ['auth.can_add_cooks']
     template_name = 'cook/cook_list.html'
     model = Cook
     table_class = tables.CookTable
     context_object_name = 'cook'
     table_pagination = {"per_page": 15}
 
-    # import pdb
-    # pdb.set_trace()
+
 
 
 class CookCreateView(LoginRequiredMixin, generic.CreateView):
@@ -78,4 +81,3 @@ class CookDeleteView(LoginRequiredMixin, generic.View):
             Candidate, pk=candidate_id)
         candidate.delete()
         return redirect(reverse('cook:cook_list'))
-

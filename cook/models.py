@@ -15,6 +15,16 @@ from django.contrib.auth.models import User
 from account.models import BusinessUnit, Position
 
 
+class Cook(Model):
+    """cook modele"""
+    name = CharField(max_length=100, unique=True)
+    email = EmailField(blank=False, null=False)
+    information = TextField()
+
+    def __str__(self):
+        return self.name
+
+
 class Vacancy(Model):
     """vacancy model"""
     businessunit = ForeignKey(
@@ -29,14 +39,3 @@ class Vacancy(Model):
             self.position.name,
             self.businessunit.name
         )
-
-
-class Cook(Model):
-    """cook modele"""
-    name = CharField(max_length=100, unique=True)
-    email = EmailField(blank=False, null=False)
-    information = TextField()
-
-    def __str__(self):
-        return self.name
-
