@@ -1,5 +1,12 @@
 from django.db import models
 
+from django.db.models import (
+    Model,
+    ForeignKey,
+    CASCADE)
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
+from account.models import UserProfile
 from shop.models import Product
 
 
@@ -27,10 +34,11 @@ class Order(models.Model):
 class OrderItem(models.Model):
     order = models.ForeignKey(Order,
                               related_name='items')
+    customer = models.CharField(max_length=100)
     product = models.ForeignKey(Product,
                                 related_name='order_items')
     price = models.DecimalField(max_digits=10, decimal_places=0)
-    calories = models.DecimalField(max_digits=10, decimal_places=0) 
+    calories = models.DecimalField(max_digits=10, decimal_places=0)
     quantity = models.PositiveIntegerField(default=1)
 
     def __str__(self):

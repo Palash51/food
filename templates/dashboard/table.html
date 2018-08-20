@@ -11,6 +11,7 @@
 
     {% include 'dashboard/nav-bar.html' %}
     
+
     <div class="container">
       <h2>Your Order History</h2>
       <ul class="nav nav-tabs">
@@ -35,18 +36,18 @@
                                         <thead>
                                             <th>ID</th>
                                             <th>Name</th>
-                                            <th>Contact</th>
-                                            <th>Thali</th>
-                                            <th>Date</th>
+                                            <th>Price</th>
+                                            <th>Calories</th>
+                                            <th>Quantity</th>
                                         </thead>
                                         <tbody>
                                             {% for obj in object_list %}
                                                 <tr>
                                                     <td>{{ forloop.counter }}</td>
-                                                    <td>{{obj.name}}</td>
-                                                    <td>{{obj.mobile}}</td>
-                                                    <td>{{obj.thali}}</td>
-                                                    <td>{{obj.date}}</td>
+                                                    <td>{{obj.product}}</td>
+                                                    <td>{{obj.price}}</td>
+                                                    <td>{{obj.calories}}</td>
+                                                    <td>{{obj.quantity}}</td>
                                                 </tr>
                                             {% endfor %}
                                  
@@ -65,46 +66,11 @@
     </div>
 
 
-<!-- tab ends -->
-        <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">My Orders</h4>
-                                <p class="category">Details of all the orders</p>
-                            </div>
-                            <div class="content table-responsive table-full-width">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <th>ID</th>
-                                    	<th>Name</th>
-                                    	<th>Contact</th>
-                                    	<th>Thali</th>
-                                    	<th>Date</th>
-                                    </thead>
-                                    <tbody>
-                                        {% for obj in object_list %}
-                                            <tr>
-                                                <td>{{ forloop.counter }}</td>
-                                                <td>{{obj.name}}</td>
-                                                <td>{{obj.mobile}}</td>
-                                                <td>{{obj.thali}}</td>
-                                                <td>{{obj.date}}</td>
-                                            </tr>
-                                        {% endfor %}
-                             
-                                    </tbody>
-                                </table>
 
-                            </div>
-                        </div>
-                    </div>   
-             </div>
-            </div>
-        </div>
-
+<br><br>
+<br><br>
+<br>
+       
 <!-- footer -->
 {% include 'dashboard/footer.html' %}
 <!-- footer -->

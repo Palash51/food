@@ -29,7 +29,7 @@ urlpatterns = [
     #url(r'^logout/$', view=LogoutView.as_view(), name='logout'),
     url(r'^orders/$', view=OrderMealView.as_view(), name='orders'),
     url(r'^dashboard/$', view=DashboardView.as_view(), name='dashboard'),
-    url(r'^dashboard/myorders$', view=OrderMealListView.as_view(), name='myorders'),
+    # url(r'^dashboard/myorders$', view=OrderMealListView.as_view(), name='myorders'),
     url(r'^myprofile/(?P<pk>\d+)$', view=UserProfileDetailView.as_view(), name='myprofile'),
     # url(r'user/<int:pk>/', views=UserProfileDetailView.as_view(), name='user_detail'),
     url(r'^lunch/$', view=LunchView.as_view(), name='lunch'),

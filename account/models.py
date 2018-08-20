@@ -112,8 +112,8 @@ class UserProfile(Model):
     roles played by employee"""
     user = OneToOneField(User, on_delete=CASCADE,
                          null=True, related_name='profile')
-    employee = OneToOneField(
-        Employee, on_delete=CASCADE, null=True, related_name='profile')
+    employee = ManyToManyField(
+        Employee, related_name='profile')
 
     class Meta:
         db_table = 'user_profile'

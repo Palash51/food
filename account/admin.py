@@ -14,7 +14,7 @@ class OrderMealAdmin(admin.ModelAdmin):
 
 class UserProfileAdmin(admin.ModelAdmin):
     """Admin class for UserProfile"""
-    list_display = ['id', 'user', 'employee']
+    list_display = ['id', 'user']
     list_filter = []
     fieldsets = [
         (None, {'fields': ['user', 'employee']}),

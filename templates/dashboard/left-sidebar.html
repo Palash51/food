@@ -5,7 +5,7 @@
     <div class="sidebar" data-background-color="black" data-active-color="success">
     	<div class="sidebar-wrapper">
             <div class="logo">
-                <a href="#" class="simple-text">
+                <a href="{% url 'myprofile' request.user.id %}" class="simple-text">
                     {{request.user}}
                 </a>
             </div>
@@ -24,13 +24,23 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'myorders' %}">
+                    {% if not user_role.is_owner and not user_role.is_manager %}
+                    <a href="{% url 'orders:myorders' %}">
                         <i class="ti-view-list-alt"></i>
                         <p>My Orders</p></a>
                     </a>
+                    {% endif %}
                 </li>
                 <li>
-                    {% if user_role.is_owner %}
+                    {% if user_role.is_owner or user_role.is_manager %}
+                    <a href="{% url 'orders:manage' %}">
+                        <i class="ti-view-list-alt"></i>
+                        <p>Manage Orders</p></a>
+                    </a>
+                    {% endif %}
+                </li>
+                <li>
+                    {% if user_role.is_owner or user_role.is_manager %}
                     <a href="{% url 'cook:cook_list' %}">
                         <i class="ti-text"></i>
                         <p>Cook</p>
@@ -38,29 +48,35 @@
                     {% endif %}
                 </li>
                 <li>
-                    <a href="icons.html">
-                        <i class="ti-pencil-alt2"></i>
-                        <p>Icons</p>
+                    {% if user_role.is_owner or user_role.is_manager %}
+                    <a href="{% url 'orders:myorders' %}">
+                        <i class="ti-view-list-alt"></i>
+                        <p>Manage Menu</p></a>
                     </a>
+                    {% endif %}
+                </li>
+                <li>
+                    {% if user_role.is_owner or user_role.is_manager %}
+                    <a href="{% url 'orders:myorders' %}">
+                        <i class="ti-view-list-alt"></i>
+                        <p>Delivery Team</p></a>
+                    </a>
+                    {% endif %}
+                </li>
+                <li>
+                    {% if not user_role.is_owner and not user_role.is_manager %}
+                    <a href="{% url 'orders:myorders' %}">
+                        <i class="ti-view-list-alt"></i>
+                        <p>My Favourites</p></a>
+                    </a>
+                    {% endif %}
                 </li>
                 <li>
                     <a href="maps.html">
                         <i class="ti-map"></i>
                         <p>Maps</p>
                     </a>
-                </li>
-                <li>
-                    <a href="notifications.html">
-                        <i class="ti-bell"></i>
-                        <p>Notifications</p>
-                    </a>
-                </li>
-				<li class="active-pro">
-                    <a href="upgrade.html">
-                        <i class="ti-export"></i>
-                        <p>Upgrade to PRO</p>
-                    </a>
-                </li>
+                </li> 
             </ul>
     	</div>
     </div>

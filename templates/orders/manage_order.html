@@ -1,0 +1,27 @@
+{% include 'dashboard/base_dashboard.html' %}
+{% include 'dashboard/left-sidebar.html' %}
+{% load static %}
+
+
+<body>
+ 	<div class="main-panel">
+		{% include 'dashboard/nav-bar.html' %}  
+        <div class="content"> 
+		{% for obj in object_list %}
+			<li>{{obj.product}} 
+					<a class="btn btn-sm btn-primary" href="{% url 'orders:accept_order' %}">
+					    <i class="fa fa-edit"></i>&nbsp; Accept
+					</a>
+					<button
+					    class="btn btn-sm btn-danger"
+					    name="remove"
+					    value="{{ record.pk }}">
+					    <i class="fa fa-times"></i>&nbsp; Reject
+					</button>			
+			</li>
+			<br>
+		{% endfor %}
+		</div>
+	</div>
+</body>
+

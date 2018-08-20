@@ -112,7 +112,7 @@ EMAIL_HOST_USER = 'palashpatidar17@gmail.com'
 EMAIL_HOST_PASSWORD = '01121994#'
 EMAIL_PORT = 587
 
-DEFAULT_FROM_EMAIL = '<palashpatidar17@gmail.com>'
+# DEFAULT_FROM_EMAIL = '<palashpatidar17@gmail.com>'
 
 
 
@@ -145,6 +145,6 @@ LOGOUT_REDIRECT_URL = '/'
 STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CART_SESSION_ID = 'cart'

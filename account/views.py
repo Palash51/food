@@ -20,15 +20,19 @@ from django.utils.decorators import method_decorator
 from django.contrib import messages
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.mixins import (
-                    LoginRequiredMixin,
-                    PermissionRequiredMixin
-                )
+    LoginRequiredMixin,
+    PermissionRequiredMixin
+)
 
 from django.views.generic import CreateView, TemplateView, FormView, DetailView
 
 from account.forms import RegisterUserForm, LoginForm, OrderMealForm
 from .models import OrderMeal, UserProfile, Employee
 from account import tables
+from account.helpers import (
+    get_total_calories,
+    get_total_amount)
+
 
 class RegisterUserView(CreateView):
     form_class = RegisterUserForm
@@ -47,10 +51,9 @@ class RegisterUserView(CreateView):
         UserProfile.objects.create(user=User.objects.get(id=user.id))
         messages.success(
             self.request, "You have been successfully registered")
-        
-        return render(self.request, 'account/welcome.html', {'form': form})
-        #return HttpResponse('User registered')
 
+        return render(self.request, 'account/welcome.html', {'form': form})
+        # return HttpResponse('User registered')
 
 
 class LoginUserView(LoginView):
@@ -68,11 +71,14 @@ class DashboardView(SingleTableMixin, generic.ListView):
     table_class = tables.OrderMealTable
     context_table_name = 'ordermeal_table'
 
-
     def get_context_data(self, **kwargs):
         context = super(DashboardView,
                         self).get_context_data(**kwargs)
         context['user_role'] = self.request.user.profile
+        context['total_calories'] = get_total_calories(
+            user=self.request.user.profile.username)
+        context['total_amount'] = get_total_amount(
+            user=self.request.user.profile.username)
         return context
 
 
@@ -87,11 +93,10 @@ class UserProfileDetailView(PermissionRequiredMixin, DetailView):
         user = get_object_or_404(
             UserProfile, user=self.kwargs['pk'])
         return render(
-            request, 
-            'dashboard/user.html', 
+            request,
+            'dashboard/user.html',
             {"user_data": user,
-            'user_id':self.kwargs['pk']})
-
+             'user_id': self.kwargs['pk']})
 
 
 class OrderMealView(FormView):
@@ -100,10 +105,9 @@ class OrderMealView(FormView):
     form = OrderMealForm
     model = OrderMeal
 
-
     def post(self, request, *args, **kwargs):
         form = OrderMealForm(request.POST)
-        
+
         if form.is_valid():
             order_meal = form.save()
             order_meal.name = request.POST['Name']
@@ -113,10 +117,9 @@ class OrderMealView(FormView):
             order_meal.message = request.POST['Message']
 
             order_meal.save()
-            
-        context= {'form': form }
-        return render(request, 'index.html', )
 
+        context = {'form': form}
+        return render(request, 'index.html', )
 
 
 class OrderMealListView(SingleTableMixin, generic.ListView):
@@ -135,26 +138,3 @@ class LunchView(TemplateView):
     """lunch view for ordering lunch"""
     template_name = 'cart/cart.html'
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-####  https://github.com/muvatech/Shopping-Cart-Using-Django-2.0-and-Python-3.6
