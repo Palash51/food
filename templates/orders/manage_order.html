@@ -2,26 +2,70 @@
 {% include 'dashboard/left-sidebar.html' %}
 {% load static %}
 
+<head>
+	<style type="text/css">
+		#demo1 , #demo2 {
+			display:inline-block;
+		}
+	</style>
+</head>
 
 <body>
  	<div class="main-panel">
-		{% include 'dashboard/nav-bar.html' %}  
+		{% include 'dashboard/nav-bar.html' %}
+
         <div class="content"> 
-		{% for obj in object_list %}
-			<li>{{obj.product}} 
-					<a class="btn btn-sm btn-primary" href="{% url 'orders:accept_order' %}">
-					    <i class="fa fa-edit"></i>&nbsp; Accept
-					</a>
-					<button
-					    class="btn btn-sm btn-danger"
-					    name="remove"
-					    value="{{ record.pk }}">
-					    <i class="fa fa-times"></i>&nbsp; Reject
-					</button>			
-			</li>
-			<br>
+        	<div class="message">
+                    {% for message in messages %}
+                        <div
+                     {% if message.tags == 'error' %}
+                         class="alert alert-danger alert-dismissible"
+                     {% else %}
+                             class="alert alert-{{message.tags}} alert-dismissible"
+                         {% endif %}
+                             >
+                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                             {{message}}
+                        </div>
+                    {% endfor %}
+        	</div>
+       
+			{% for obj in object_list %}
+				
+				{{obj.product}} &emsp; {{obj.quantity}} &emsp; {{obj.order.address}}
+					&emsp; {{obj.price}} &emsp; 
+					<div class="tab">
+					<form method="post" action="{% url 'orders:accept' %}" id="demo1">
+						{% csrf_token %}
+						<button
+						class="btn btn-sm btn-primary"
+						name="accept"
+						value="{{ obj.pk }}"
+						
+	   			 		<i class="fa fa-edit"></i>&nbsp; Accept
+						</button>
+					</form>
+					<form method="post" action="{% url 'orders:remove' %}" id="demo2">
+	            	{% csrf_token %}
+	         			<button
+						    class="btn btn-sm btn-danger"
+						    name="remove"
+						    value="{{ obj.pk }}"
+						    
+						    <i class="fa fa-times"></i>&nbsp; Reject
+						</button>
+	        		</form>
+					</div>
+				
+			<br><br>
 		{% endfor %}
-		</div>
-	</div>
+
+		</div>	
+
+</div>
+
+
+		
+	
 </body>
 

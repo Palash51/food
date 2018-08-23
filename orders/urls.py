@@ -2,8 +2,11 @@ from django.conf.urls import url
 from . import views
 from orders.views import (
     OrderHistory,
-    ManageOrders
+    ManageOrders,
+    OrderDeleteView,
+    OrderAcceptView
 )
+from . import views
 
 urlpatterns = [
     url(r'^create/$',
@@ -11,5 +14,7 @@ urlpatterns = [
         name='order_create'),
     url(r'^myorders$', view=OrderHistory.as_view(), name='myorders'),
     url(r'^manage$', view=ManageOrders.as_view(), name='manage'),
-    url(r'^accept_order$', view=ManageOrders.as_view(), name='accept_order'),
+    url(r'^remove$', view=OrderDeleteView.as_view(), name='remove'),
+    # url(r'^accept_order$', view=ManageOrders.as_view(), name='accept_order'),
+    url(r'^accept$', view=OrderAcceptView.as_view(), name='accept'),
 ]

@@ -1,5 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse_lazy, reverse
+from django.contrib import messages
 from django.views import generic
+from django.http import HttpResponse
 from cart.cart import Cart
 from .forms import OrderCreateForm
 from .models import OrderItem, Order
@@ -57,4 +60,30 @@ class ManageOrders(generic.ListView):
       # import pdb
       # pdb.set_trace()
       return all_orders
+
+
+class OrderAcceptView(generic.View):
+    """order accept"""
+    
+    model = OrderItem
+    
+    def post(self, request, *args, **kwargs):
+        """url to redirect to on success"""
+        messages.success(
+            self.request, "You have successfully Accepted the order, start cooking")
+        return redirect(reverse('orders:manage'))
+
+
+class OrderDeleteView(generic.View):
+    """order delete"""
+    model = OrderItem
+
+    def post(self, request, *args, **kwargs):
+        """Delete a Candidate"""
+        order_id = request.POST['remove']
+        order = get_object_or_404(
+            OrderItem, pk=order_id)
+        order.delete()
+        return redirect(reverse('orders:manage'))
+
 
