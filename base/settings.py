@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'django_tables2',
     'django_extensions',
     'crispy_forms',
+    'notify',
     'account',
     'cart',
     'bootstrap3',
@@ -113,7 +114,7 @@ EMAIL_HOST_PASSWORD = '01121994#'
 EMAIL_PORT = 587
 
 # DEFAULT_FROM_EMAIL = '<palashpatidar17@gmail.com>'
-
+NOTIFICATIONS_SOFT_DELETE = True
 
 
 LANGUAGE_CODE = 'en-us'

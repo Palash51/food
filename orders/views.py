@@ -3,6 +3,9 @@ from django.urls import reverse_lazy, reverse
 from django.contrib import messages
 from django.views import generic
 from django.http import HttpResponse
+from notify.signals import notify
+from django.contrib.auth.models import User, Group
+
 from cart.cart import Cart
 from .forms import OrderCreateForm
 from .models import OrderItem, Order
@@ -27,6 +30,8 @@ def order_create(request):
             cart.clear()
             order_created(order.id)
             request.session['order_id'] = order.id
+            import pdb
+            pdb.set_trace()
             # redirect to the payment
             return redirect('shop:product_list')
             # return redirect('payment:process')
@@ -64,11 +69,18 @@ class ManageOrders(generic.ListView):
 
 class OrderAcceptView(generic.View):
     """order accept"""
-    
+    template_name = 'orders/manage_order.html'
     model = OrderItem
     
     def post(self, request, *args, **kwargs):
         """url to redirect to on success"""
+        order_id = request.POST['accept']
+        order = get_object_or_404(
+            OrderItem, pk=order_id)
+        
+        customer_user = User.objects.get(username=order.customer)
+        notify.send(request.user, recipient=customer_user, actor=user_to_send,
+                verb='Order Accepted', nf_type='followed_by_one_user')
         messages.success(
             self.request, "You have successfully Accepted the order, start cooking")
         return redirect(reverse('orders:manage'))

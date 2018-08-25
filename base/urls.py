@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'^orders/', include('orders.urls', namespace='orders')),
     url(r'^shop/', include('shop.urls', namespace='shop')),
     url(r'^cook/', include('cook.urls', namespace='cook')),
+    url(r'^notifications/', include('notify.urls', 'notifications')),
     url(r'^admin/', admin.site.urls),
 ]

@@ -18,21 +18,42 @@
 								<p>Stats</p>
                             </a>
                         </li>
-                        <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="ti-bell"></i>
-                                    <p class="notification">5</p>
-									<p>Notifications</p>
-									<b class="caret"></b>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
-                              </ul>
-                        </li>
+                        
+                        <li class="dropdown notifications-menu">
+                    {% with user.notifications.unread.count as notifications_count %}
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                        <i class="fa fa-bell-o"></i>
+                        {% if notifications_count %}
+                            <span class="label label-warning">{{ notifications_count }}</span>
+                        {% endif %}
+                    </a>
+                    <ul class="dropdown-menu">
+                        {% if notifications_count %}
+                            <li class="header">You have {{ notifications_count }} notifications</li>
+                            <li>
+                                <ul class="menu">
+                                    {% for notification in user.notifications.unread %}
+                                        <li>
+                                            <a href="{% url 'notifications:read_and_redirect' notification.id %}">
+                                                <i class="fa fa-info-circle text-blue"> {{ notification.verb }}</i>
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% else %}
+                            <li class="header">You have no unread notifications</li>
+                        {% endif %}
+                        <li class="footer"><a href="{% url 'notifications:all' %}">View all</a></li>
+                    </ul>
+                {% endwith %}
+            </li>
+        
+
+
+
+
+
 						<li>
                             <a href="{% url 'logout' %}">
 								<i class="ti-settings"></i>
