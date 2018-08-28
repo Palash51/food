@@ -1,5 +1,5 @@
 from datetime import datetime, date, timedelta
-from django.db.models import (Count, Sum, Case, When, Q)
+from django.db.models import (Count, Sum, Case, When, Q, F, ExpressionWrapper, Aggregate, IntegerField)
 from django.db.models.functions import Coalesce
 
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
@@ -20,8 +20,14 @@ def get_total_calories(user):
 
 def get_total_amount(user):
 	""""""
+	x = OrderItem.get_cost
+	
+	# total_amount_qu = OrderItem.objects.filter(customer=user).annotate(
+ #    	total_weight=ExpressionWrapper(F('price') * F('quantity'), 
+ #                                   output_field=IntegerField() ))
 	total_amount = OrderItem.objects.filter(customer=user).aggregate(
         Sum('price'))['price__sum']
 
 	return total_amount
+
 

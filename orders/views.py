@@ -30,8 +30,11 @@ def order_create(request):
             cart.clear()
             order_created(order.id)
             request.session['order_id'] = order.id
-            import pdb
-            pdb.set_trace()
+            # import pdb
+            # pdb.set_trace()
+            customer_user = User.objects.get(username='sb_owner')
+            notify.send(request.user, recipient=customer_user, actor=request.user,
+                        verb='placed an order', nf_type='followed_by_one_user')
             # redirect to the payment
             return redirect('shop:product_list')
             # return redirect('payment:process')
@@ -54,36 +57,50 @@ class OrderHistory(generic.ListView):
             customer=self.request.user.profile.username)
         return queryset
 
+
 class ManageOrders(generic.ListView):
     """"""
     template_name = 'orders/manage_order.html'
     model = OrderItem
 
     def get_queryset(self):
-      """"""
-      all_orders = OrderItem.objects.all()
-      # import pdb
-      # pdb.set_trace()
-      return all_orders
+        """"""
+        all_orders = OrderItem.objects.all()
+        # import pdb
+        # pdb.set_trace()
+        return all_orders
 
 
 class OrderAcceptView(generic.View):
     """order accept"""
     template_name = 'orders/manage_order.html'
     model = OrderItem
-    
+
     def post(self, request, *args, **kwargs):
         """url to redirect to on success"""
         order_id = request.POST['accept']
         order = get_object_or_404(
             OrderItem, pk=order_id)
-        
+        # import pdb
+        # pdb.set_trace()
+        order.status = True
+        order.save()
         customer_user = User.objects.get(username=order.customer)
-        notify.send(request.user, recipient=customer_user, actor=user_to_send,
-                verb='Order Accepted', nf_type='followed_by_one_user')
+        notify.send(request.user, recipient=customer_user, actor=customer_user,
+                    verb='Order Accepted', nf_type='followed_by_one_user')
         messages.success(
             self.request, "You have successfully Accepted the order, start cooking")
         return redirect(reverse('orders:manage'))
+
+
+class OrderDetailView(generic.DetailView):
+    """order details"""
+    template_name = 'orders/detail_order.html'
+    model = OrderItem
+
+    def get_success_url(self):
+        """url to redirect to on success"""
+        return reverse('orders:manage')
 
 
 class OrderDeleteView(generic.View):
@@ -95,7 +112,6 @@ class OrderDeleteView(generic.View):
         order_id = request.POST['remove']
         order = get_object_or_404(
             OrderItem, pk=order_id)
+
         order.delete()
         return redirect(reverse('orders:manage'))
-
-

@@ -35,27 +35,41 @@
 				{{obj.product}} &emsp; {{obj.quantity}} &emsp; {{obj.order.address}}
 					&emsp; {{obj.price}} &emsp; 
 					<div class="tab">
-					<form method="post" action="{% url 'orders:accept' %}" id="demo1">
-						{% csrf_token %}
-						<button
-						class="btn btn-sm btn-primary"
-						name="accept"
-						value="{{ obj.pk }}"
-						id="btnSubmit" 
-						type="submit"
-	   			 		<i class="fa fa-edit"></i>&nbsp; Accept
-						</button>
-					</form>
-					<form method="post" action="{% url 'orders:remove' %}" id="demo2">
-	            	{% csrf_token %}
-	         			<button
-						    class="btn btn-sm btn-danger"
-						    name="remove"
-						    value="{{ obj.pk }}"
-						    
-						    <i class="fa fa-times"></i>&nbsp; Reject
-						</button>
-	        		</form>
+						{% if obj.status %}
+						<form method="get" action="{% url 'orders:detail' obj.pk %}" id="demo1">
+							
+							<button
+							class="btn btn-sm btn-primary"
+							name="accept"
+							value="{{ obj.pk }}"
+							id="btnSubmit" 
+							type="submit"
+		   			 		<i class="fa fa-edit"></i>&nbsp; Detail
+							</button>
+						</form>
+						{% else %}
+						<form method="post" action="{% url 'orders:accept' %}" id="demo1">
+							{% csrf_token %}
+							<button
+							class="btn btn-sm btn-primary"
+							name="accept"
+							value="{{ obj.pk }}"
+							id="btnSubmit" 
+							type="submit"
+		   			 		<i class="fa fa-edit"></i>&nbsp; Accept
+							</button>
+						</form>
+						{% endif %}
+						<form method="post" action="{% url 'orders:remove' %}" id="demo2">
+		            	{% csrf_token %}
+		         			<button
+							    class="btn btn-sm btn-danger"
+							    name="remove"
+							    value="{{ obj.pk }}"
+							    
+							    <i class="fa fa-times"></i>&nbsp; Reject
+							</button>
+		        		</form>
 				</div>
 				
 			<br><br>
