@@ -26,6 +26,8 @@ def order_create(request):
                                          price=item['price'],
                                          calories=item['product'].calories,
                                          quantity=item['quantity'])
+                import pdb
+                pdb.set_trace()
             # clear the cart
             cart.clear()
             order_created(order.id)

@@ -1,0 +1,74 @@
+{% include 'dashboard/base_dashboard.html' %}
+
+
+{% load static %}
+
+
+{% block title_note %}
+{% if user.is_authenticated %}
+    {{user.username}}
+{% endif %}
+{% endblock %}
+
+{% block main_content %}
+{% if user.is_authenticated %}
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <form method="post" action="{% url 'notifications:mark_all' %}">
+            {% csrf_token %}
+            <input name="action" type="hidden" value="read">
+            <button type="submit" class="btn btn-primary" href="{% url 'notifications:mark_all' %}"><i class="fa fa-envelope"></i> Mark as read</button>
+        </form>
+    </div>
+    <div class="box-body no-padding">
+        <table class="table table-bordered" cellpadding="10" cellspacing="10"">
+            <thead>
+                <br>
+                <tr>
+                    <th> Title </th>
+                    <th> From </th>
+                    <th> Message </th>
+                    <th> Read </th>
+                    <th> Created </th>
+                    <th> Actions <input type="checkbox" onClick="toggle(this)"></th>
+                    <script type="text/javascript">
+                           
+                        function toggle(source) {
+                            
+                            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                            for (var i = 0; i < checkboxes.length; i++) {
+                                if (checkboxes[i] != source)
+                                    checkboxes[i].checked = source.checked;
+                            }
+
+                        };
+                    </script>
+                </tr>
+            </thead>
+            <tbody>
+                {% for notification in user.notifications.all|dictsortreversed:"created" %}
+                <tr>
+                    <td> {{notification.verb }} </td>
+                    <td> {{notification.actor}} </td>
+                    <td> {{notification.description }} </td> 
+                    <td> {{notification.read|yesno:'Yes,No' }} </td> 
+                    <td> {{notification.created|timesince }} </td> 
+                    <td>
+                        {% if not notification.read %}
+                        <input type="checkbox" name="foo" value="bar1" href="{% url 'notifications:read_and_redirect' notification.id %}">
+                        {% endif %}
+                        
+                    </td>
+                </tr>
+                {% empty %}
+                <tr><td colspan=5>No notifications available.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% else %}
+No notifications to show
+{% endif %}
+{% endblock main_content %}
+
