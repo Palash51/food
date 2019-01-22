@@ -9,6 +9,8 @@ from orders.views import (
 )
 from . import views
 
+app_name = 'orders'
+
 urlpatterns = [
     url(r'^create/$',
         views.order_create,

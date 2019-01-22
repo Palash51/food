@@ -14,7 +14,8 @@ from django.contrib.auth.views import LoginView
 from django.http import HttpResponseForbidden, HttpResponse
 from django.views import generic
 from django.shortcuts import render, redirect,  get_object_or_404
-from django.core.urlresolvers import reverse
+# from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.contrib import messages
@@ -39,7 +40,8 @@ class RegisterUserView(CreateView):
     template_name = "account/register.html"
 
     def dispatch(self, request, *args, **kwargs):
-        if request.user.is_authenticated():
+        
+        if request.user.is_authenticated:
             return HttpResponseForbidden()
 
         return super(RegisterUserView, self).dispatch(request, *args, **kwargs)
@@ -60,7 +62,7 @@ class LoginUserView(LoginView):
     form_class = LoginForm
     template_name = "account/login.html"
     redirect_authenticated_user = True
-    success_url = reverse_lazy('dashboard')
+    success_url = reverse_lazy('account:dashboard')
 
 
 @method_decorator(login_required, name='dispatch')

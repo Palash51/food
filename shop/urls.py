@@ -3,6 +3,9 @@ from django.conf.urls.static import static
 from django.conf import settings
 from . import views
 
+
+app_name = 'shop'
+
 urlpatterns = [
     url(r'^$', views.product_list,
         name='product_list'),

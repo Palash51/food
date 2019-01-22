@@ -21,7 +21,7 @@
                 <div class="navbar-item">
                     <div class="field is-grouped">
                         <!-- <p class="control">
-                            <a href="{% url 'register' %}" class="button is-primary">
+                            <a href="{% url 'account:register' %}" class="button is-primary">
                                 <span>SIGN UP</span>
                             </a>
                          </p> -->
@@ -35,7 +35,7 @@
         <div class="columns is-mobile">
             <div class="column is-half is-offset-one-quarter">
                 <div class="content"><h2>Register</h2></div>
-                <form action="{% url 'register' %}" method="post">
+                <form action="{% url 'account:register' %}" method="post">
                     {% csrf_token %}
                     {% for non_field_error in form.non_field_errors %}
                         <p class="help is-danger">{{ non_field_error }}</p>

@@ -14,6 +14,8 @@ from cook.views import (
     CookDeleteView,
 )
 
+app_name = 'cook'
+
 urlpatterns = [
     url(r'^$', view=CookListView.as_view(), name='cook_list'),
     url(r'^create/$', view=CookCreateView.as_view(), name='cook_create'),

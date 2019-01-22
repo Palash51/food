@@ -20,7 +20,7 @@
                 <div class="navbar-item">
                     <div class="field is-grouped">
                         <!-- <p class="control">
-                            <a href="{% url 'register' %}" class="button is-primary">
+                            <a href="" class="button is-primary">
                                 <span>SIGN UP</span>
                             </a>
                          </p> -->
@@ -34,7 +34,7 @@
         <div class="columns is-mobile">
             <div class="column is-half is-offset-one-quarter">
                 <h3 class="title is-size-3">Login</h3>
-                <form action="{% url 'login' %}" method="post">
+                <form action="{% url 'account:login' %}" method="post">
                     {% csrf_token %}
                     {% for non_field_error in form.non_field_errors %}
                         <p class="help is-danger">{{ non_field_error }}</p>
@@ -49,8 +49,8 @@
                         </div>
                     {% endfor %}
                     <input type="submit" value="SIGN IN" class="button is-primary">
-                    <a href="{% url 'register' %}"><input type="" value="SIGN UP" class="button is-primary"></a>
-                    <span class="psw">Forgot <a href="{% url 'password_reset' %}"</a>password?</span>
+                    <a href="{% url 'account:register' %}"><input type="" value="SIGN UP" class="button is-primary"></a>
+                    <span class="psw">Forgot <a href="{% url 'account:password_reset' %}"</a>password?</span>
                     
                 </form>
         

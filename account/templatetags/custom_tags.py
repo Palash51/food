@@ -4,7 +4,9 @@ import math
 from django import template
 from django.db.models import Q
 from django.contrib.contenttypes.models import ContentType
-from django.core.urlresolvers import reverse
+# from django.core.urlresolvers import reverse
+from django.urls import reverse
+
 from account.models import OrderMeal
 
 register = template.Library()

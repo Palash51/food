@@ -50,7 +50,7 @@
 									<!-- <li><a href="#services" class="scroll">Menu</a></li> -->
 									<li><a href="#about" class="scroll">About</a></li>
 									<li><a href="#contact" class="scroll">Contact</a></li>
-									<li><a href="{% url 'login' %}" >SignUp/LogIn</a>
+									<li><a href="{% url 'account:login' %}" >SignUp/LogIn</a>
 									</li>
 								</ul>
 						
@@ -97,7 +97,7 @@
 			<div id="small-dialog2" class="mfp-hide book-form">
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h3>Order Your Meal</h3>
-					<form action="{% url 'orders' %}" method="post">
+					<form action="{% url 'account:orders' %}" method="post">
 						{% csrf_token %}
 						<input type="text" name="Name" placeholder="Name" required=""/>
 						<input type="tel" name="number" placeholder="Mobile Number" required=""/>
