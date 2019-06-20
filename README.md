@@ -20,7 +20,11 @@ Added simple form to direct order meal
 
 # Cart 
 Added cart and bill features
+Using stripe payment platform for payments
+Stripe connect (marketplace) will be added in future
 
 # Next version
 1) To add rest api 
 2) User's food-data analysis feature
+3) Stripe connect (marketplace) will be added in future
+4) Email marketing using Mailchimp (mandrill)
