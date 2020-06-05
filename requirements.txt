@@ -6,7 +6,7 @@ Click==7.0
 CommonMark==0.5.4
 cycler==0.10.0
 decorator==4.3.0
-Django==2.0.5
+Django==2.2.13
 django-auth-ldap3==0.9.6
 django-bootstrap-daterangepicker==1.0.1
 django-bootstrap3==9.1.0
