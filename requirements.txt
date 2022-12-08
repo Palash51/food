@@ -1,6 +1,6 @@
 behave==1.2.5
 behave-django==0.5.0
-certifi==2018.11.29
+certifi==2022.12.7
 chardet==2.3.0
 Click==7.0
 CommonMark==0.5.4
